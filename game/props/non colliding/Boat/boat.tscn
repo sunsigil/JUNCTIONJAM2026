@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://props/non colliding/Boat/boat.gd" id="1_boat"]
+
+[node name="Boat" type="Node2D"]
+script = ExtResource("1_boat")
+
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-140, -34, 140, -34, 140, 34, -140, 34)
+color = Color(0.72, 0.47, 0.24, 1)
