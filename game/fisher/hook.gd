@@ -12,6 +12,10 @@ var heading_delay: float = 1;
 @export
 var velocity_delay: float = 0.1;
 
+var _display: bool;
+func display():
+	_display = true;
+
 var buffered_input: Vector2;
 var input: Vector2;
 var input_last: Vector2;
@@ -19,7 +23,7 @@ var input_delta: Vector2;
 var input_weight: Vector2;
 var weight_time: float;
 var heading: Vector2;
-
+	
 func move(dir: Vector2):
 	buffered_input = dir;
 
@@ -45,6 +49,10 @@ func _process(delta):
 	queue_redraw();
 	
 func _draw():
+	if not _display:
+		return;
+	_display = false;
+		
 	draw_circle(position, radius, Color.WHITE);
 	
 	var scale_factor = 200;

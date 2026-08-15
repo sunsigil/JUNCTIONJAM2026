@@ -17,18 +17,23 @@ func _ready() -> void:
 	rod = get_node("rod");
 	hook = get_node("hook");
 	
-func rod_input(delta):
+func rod_logic(delta):
 	if rod.is_casting():
 		if Input.is_action_pressed("game_action"):
 			rod.tick_cast(delta);
 		else:
 			rod.finish_cast();
 			state = State.LURING;
-	else:
+	elif rod.is_ready():
 		if Input.is_action_just_pressed("game_action"):
 			rod.start_cast();
+	else:
+		if Input.is_action_just_released("game_action"):
+			rod.prepare_cast();
+	
+	rod.display();
 			
-func hook_input():
+func hook_logic():
 	var input = Vector2.ZERO;
 	if Input.is_action_pressed("game_right"):
 		input.x += 1;
@@ -39,6 +44,8 @@ func hook_input():
 	if Input.is_action_pressed("game_down"):
 		input.y += 1;
 	hook.move(input);
+	
+	hook.display();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -46,7 +53,6 @@ func _process(delta: float) -> void:
 		State.IDLE:
 			state = State.CASTING;
 		State.CASTING:
-			rod_input(delta);
+			rod_logic(delta);
 		State.LURING:
-			hook_input();
-		
+			hook_logic();
