@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://fish/fish.tscn" id="1_fish"]
+
+[node name="FishTest" type="Node2D"]
+
+[node name="Fish" parent="." instance=ExtResource("1_fish")]
+position = Vector2(576, 324)
