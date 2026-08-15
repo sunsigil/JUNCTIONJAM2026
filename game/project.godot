@@ -11,12 +11,22 @@ config_version=5
 [application]
 
 config/name="JUNCTIONJAM2026"
+run/main_scene="uid://crhylms6jfg66"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Enums="*uid://b3u1mnbu3e46g"
+Data="*uid://1ejh3i8e2blg"
+
 [display]
 
-window/stretch/mode="canvas_items"
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [physics]
