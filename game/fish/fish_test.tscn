@@ -5,4 +5,4 @@
 [node name="FishTest" type="Node2D"]
 
 [node name="Fish" parent="." instance=ExtResource("1_fish")]
-position = Vector2(576, 324)
+position = Vector2(960, 540)
