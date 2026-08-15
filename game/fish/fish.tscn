@@ -1,28 +1,28 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bgroccw2ok1rn"]
 
-[ext_resource type="Script" path="res://fish/fish.gd" id="1_fish"]
+[ext_resource type="Script" uid="uid://ckccujge7cccs" path="res://fish/fish.gd" id="1_fish"]
 
-[node name="Fish" type="Node2D"]
+[node name="Fish" type="Node2D" unique_id=1899075685]
 script = ExtResource("1_fish")
 
-[node name="Pieces" type="Node2D" parent="."]
+[node name="Pieces" type="Node2D" parent="." unique_id=1141507204]
 
-[node name="Head" type="Polygon2D" parent="Pieces"]
+[node name="Head" type="Polygon2D" parent="Pieces" unique_id=1017787644]
+color = Color(0.294118, 0.721569, 0.870588, 1)
 polygon = PackedVector2Array(18, 0, -14, -14, -14, 14)
-color = Color(0.294118, 0.721569, 0.870588, 1)
 
-[node name="UpperBody" type="Polygon2D" parent="Pieces"]
-polygon = PackedVector2Array(-18, -8, 18, -8, 18, 8, -18, 8)
+[node name="UpperBody" type="Polygon2D" parent="Pieces" unique_id=1714370418]
 color = Color(0.294118, 0.721569, 0.870588, 1)
+polygon = PackedVector2Array(9.214504, -19.624191, 9.783497, 16.37131, -6.214505, 16.624191, -6.783496, -19.37131)
 
-[node name="LowerBody" type="Polygon2D" parent="Pieces"]
-polygon = PackedVector2Array(-17, -7, 17, -7, 17, 7, -17, 7)
+[node name="LowerBody" type="Polygon2D" parent="Pieces" unique_id=1819391304]
 color = Color(0.294118, 0.721569, 0.870588, 1)
+polygon = PackedVector2Array(14.698784, -17.62093, 15.299034, 16.373768, 1.3012161, 16.62093, 0.7009697, -17.373768)
 
-[node name="BodyEnd" type="Polygon2D" parent="Pieces"]
+[node name="BodyEnd" type="Polygon2D" parent="Pieces" unique_id=1379019299]
+color = Color(0.294118, 0.721569, 0.870588, 1)
 polygon = PackedVector2Array(-16, 0, 14, -11, 14, 11)
-color = Color(0.294118, 0.721569, 0.870588, 1)
 
-[node name="Tail" type="Polygon2D" parent="Pieces"]
-polygon = PackedVector2Array(10, 0, -18, -18, -18, 18)
+[node name="Tail" type="Polygon2D" parent="Pieces" unique_id=29228791]
 color = Color(0.294118, 0.721569, 0.870588, 1)
+polygon = PackedVector2Array(10, 0, -18, -18, -18, 18)
