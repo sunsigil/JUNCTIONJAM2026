@@ -53,7 +53,7 @@ func _draw():
 		return;
 	_display = false;
 		
-	draw_circle(position, radius, Color.WHITE);
+	draw_circle(position, radius, Color.WHITE, false);
 	
 	var scale_factor = 200;
 	draw_line(position, input.rotated(-rotation) * scale_factor, Color.BLUE);
