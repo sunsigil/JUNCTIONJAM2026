@@ -1,5 +1,10 @@
 extends Node2D
 
+@export
+var width: float = 400;
+@export
+var height: float = 50;
+
 var _display: bool;
 func display():
 	_display = true;
@@ -51,18 +56,18 @@ func _draw():
 		return;
 	_display = false;
 		
-	var w = 100;
-	var h = 20;
-	var x0 = position.x;
-	var y0 = position.y;
-	draw_rect(Rect2(x0, y0, w, h), Color.CADET_BLUE);
+	var x0 = position.x-width/2;
+	var y0 = position.y-height/2;
+	draw_rect(Rect2(x0, y0, width, height), Color.CADET_BLUE);
 	
 	if not is_ready():
-		return;	
-	var tw = w * current_cast.target_t;
-	draw_rect(Rect2(x0, y0, tw, h), Color.SEA_GREEN);
+		draw_string(ThemeDB.fallback_font, Vector2(x0, y0), "PRESS SPACE");
+		return;
+	var tw = width * current_cast.target_t;
+	draw_rect(Rect2(x0, y0, tw, height), Color.SEA_GREEN);
+	draw_string(ThemeDB.fallback_font, Vector2(x0, y0), "FILL!");
 	
 	if not is_casting():
 		return;
-	var cw = w * current_cast.t;
-	draw_rect(Rect2(x0, y0, cw, h), Color.GREEN_YELLOW);
+	var cw = width * current_cast.t;
+	draw_rect(Rect2(x0, y0, cw, height), Color.GREEN_YELLOW);
