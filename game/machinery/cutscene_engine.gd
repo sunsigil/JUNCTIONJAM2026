@@ -71,6 +71,13 @@ var background_node: Sprite2D;
 var portrait_nodes: Array[Sprite2D];
 var text_node: Label;
 
+func refresh():
+	background_rect.color = background_colour;
+	background_node.texture = background;
+	portrait_nodes[0].texture = portraits[0];
+	portrait_nodes[1].texture = portraits[1];
+	text_node.text = text;
+
 func _ready():
 	background_rect = get_node("background_colour");
 	background_node = get_node("background");
@@ -80,17 +87,16 @@ func _ready():
 	];
 	text_node = get_node("text");
 	
+	clear();
+	refresh();
+	
 func _process(delta: float) -> void:
 	if not is_playing():
 		hide();
 		return;
 	show();
 	
-	background_rect.color = background_colour;
-	background_node.texture = background;
-	portrait_nodes[0].texture = portraits[0];
-	portrait_nodes[1].texture = portraits[1];
-	text_node.text = text;
+	refresh();
 		
 	var cmd = cutscene[command_idx];
 	execute_command(cmd);

@@ -1,5 +1,7 @@
 extends Node
 
+var game_scene = preload("res://pond.tscn");
+
 var trigger = false;
 var t: float = 0;
 
@@ -27,4 +29,4 @@ func _process(delta: float) -> void:
 		
 	if t >= 1.0:
 		queue_free();
-		get_tree().change_scene_to_file("res://pond.tscn");
+		get_tree().change_scene_to_packed(game_scene);
