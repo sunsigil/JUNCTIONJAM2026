@@ -1,4 +1,7 @@
 extends CharacterBody2D
+var _display: bool;
+func display():
+	_display = true;
 
 @export
 var radius: float = 50;
@@ -11,10 +14,6 @@ var heading_weight: float = 2;
 var heading_delay: float = 1;
 @export
 var velocity_delay: float = 0.1;
-
-var _display: bool;
-func display():
-	_display = true;
 
 var buffered_input: Vector2;
 var input: Vector2;

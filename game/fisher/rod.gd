@@ -1,13 +1,12 @@
 extends Node2D
+var _display: bool;
+func display():
+	_display = true;
 
 @export
 var width: float = 400;
 @export
 var height: float = 50;
-
-var _display: bool;
-func display():
-	_display = true;
 
 var casts: Array[Cast] = [];
 var current_cast: Cast = null;
