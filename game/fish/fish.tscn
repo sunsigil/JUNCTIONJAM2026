@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://fish/fish.gd" id="1_fish"]
+
+[node name="Fish" type="Node2D"]
+script = ExtResource("1_fish")
+
+[node name="Pieces" type="Node2D" parent="."]
+
+[node name="Head" type="Polygon2D" parent="Pieces"]
+polygon = PackedVector2Array(18, 0, -14, -14, -14, 14)
+color = Color(0.294118, 0.721569, 0.870588, 1)
+
+[node name="UpperBody" type="Polygon2D" parent="Pieces"]
+polygon = PackedVector2Array(-18, -8, 18, -8, 18, 8, -18, 8)
+color = Color(0.294118, 0.721569, 0.870588, 1)
+
+[node name="LowerBody" type="Polygon2D" parent="Pieces"]
+polygon = PackedVector2Array(-17, -7, 17, -7, 17, 7, -17, 7)
+color = Color(0.294118, 0.721569, 0.870588, 1)
+
+[node name="BodyEnd" type="Polygon2D" parent="Pieces"]
+polygon = PackedVector2Array(-16, 0, 14, -11, 14, 11)
+color = Color(0.294118, 0.721569, 0.870588, 1)
+
+[node name="Tail" type="Polygon2D" parent="Pieces"]
+polygon = PackedVector2Array(10, 0, -18, -18, -18, 18)
+color = Color(0.294118, 0.721569, 0.870588, 1)
