@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://crhylms6jfg66"]
 
 [ext_resource type="Script" uid="uid://buu87jnvx74qm" path="res://fisher/camera.gd" id="1_micnc"]
+[ext_resource type="Texture2D" uid="uid://drld4cjhhyub1" path="res://icon.svg" id="2_4uvmm"]
 [ext_resource type="Script" uid="uid://cioh0da8k68ya" path="res://fisher/fisher.gd" id="3_e62h4"]
 [ext_resource type="Script" uid="uid://b5qp58823ygp8" path="res://fisher/hook.gd" id="4_xpml8"]
 [ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="4_yrlwy"]
+[ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://cutscene/cutscene_engine.gd" id="5_xpml8"]
+[ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="7_bu1hh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrlwy"]
 
@@ -17,9 +20,44 @@ script = ExtResource("3_e62h4")
 
 [node name="rod" type="Node2D" parent="fisher" unique_id=355673590]
 script = ExtResource("4_yrlwy")
+width = 800.0
 
 [node name="hook" type="CharacterBody2D" parent="fisher" unique_id=85991419]
 script = ExtResource("4_xpml8")
+radius = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fisher/hook" unique_id=1750595037]
 shape = SubResource("CircleShape2D_yrlwy")
+
+[node name="cutscene_engine" type="Node2D" parent="." unique_id=103527535 groups=["cutscene_engine"]]
+script = ExtResource("5_xpml8")
+
+[node name="background_colour" type="ColorRect" parent="cutscene_engine" unique_id=2005704502]
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+
+[node name="background" type="Sprite2D" parent="cutscene_engine" unique_id=1632244283]
+scale = Vector2(15.17, 8.5)
+texture = ExtResource("2_4uvmm")
+
+[node name="portrait_0" type="Sprite2D" parent="cutscene_engine" unique_id=1223332431]
+position = Vector2(-523, -379)
+scale = Vector2(2, 2)
+texture = ExtResource("2_4uvmm")
+
+[node name="portrait_1" type="Sprite2D" parent="cutscene_engine" unique_id=1900050472]
+position = Vector2(-306, -143)
+scale = Vector2(2, 2)
+texture = ExtResource("2_4uvmm")
+
+[node name="text" type="Label" parent="cutscene_engine" unique_id=1117020637]
+offset_left = -559.0
+offset_top = 65.0
+offset_right = 565.0
+offset_bottom = 373.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_bu1hh")
+theme_override_font_sizes/font_size = 48
+text = "Hello, world!"
