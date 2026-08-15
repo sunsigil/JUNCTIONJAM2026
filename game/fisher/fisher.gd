@@ -7,7 +7,7 @@ enum State
 	LURING
 };
 
-var cutscene_engine: CutsceneEngine;
+var stage_engine: StageEngine;
 
 var rod: Node2D;
 var hook: Node2D;
@@ -16,12 +16,10 @@ var state: State = State.IDLE;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cutscene_engine = get_tree().get_first_node_in_group("cutscene_engine");
+	stage_engine = get_tree().get_first_node_in_group("stage_engine");
 	
 	rod = get_node("rod");
 	hook = get_node("hook");
-	
-	cutscene_engine.play(Cutscenes.test);
 	
 func rod_logic(delta):
 	if rod.is_casting():
@@ -55,11 +53,11 @@ func hook_logic():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if cutscene_engine.is_playing():
+	if stage_engine.is_idle():
+		stage_engine.start_stage();
+	if not stage_engine.is_stage_started():
 		return;
-	else:
-		pass;
-		
+				
 	match state:
 		State.IDLE:
 			state = State.CASTING;

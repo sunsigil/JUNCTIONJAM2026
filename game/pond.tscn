@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="4_yrlwy"]
 [ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://machinery/cutscene_engine.gd" id="5_xpml8"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="7_bu1hh"]
+[ext_resource type="Script" uid="uid://br8wok3bfaw70" path="res://machinery/stage_engine.gd" id="8_tmh31"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrlwy"]
 
@@ -28,6 +29,9 @@ radius = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fisher/hook" unique_id=1750595037]
 shape = SubResource("CircleShape2D_yrlwy")
+
+[node name="stage_engine" type="Node" parent="." unique_id=197921989 groups=["stage_engine"]]
+script = ExtResource("8_tmh31")
 
 [node name="cutscene_engine" type="Node2D" parent="." unique_id=103527535 groups=["cutscene_engine"]]
 script = ExtResource("5_xpml8")
