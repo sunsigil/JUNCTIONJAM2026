@@ -2,37 +2,36 @@ extends Node2D
 
 var casts: Array[Cast] = [];
 var current_cast: Cast = null;
-var t: float = 0;
+var cast_t: float = 0;
 
 func start_cast():
 	current_cast = Cast.new(self, 0.5 + randf()*0.5, 0);
-	t = 0;
+	cast_t = 0;
 
 func tick_cast(delta: float):
-	t += delta;
-	current_cast.t = Curves.ease_out_quad(t);
+	cast_t += delta;
+	current_cast.t = Curves.ease_out_quad(cast_t);
 
 func finish_cast():
 	current_cast.finalize();
 	print(current_cast);
 	casts.append(current_cast);
 	current_cast = null;
+	
+func is_casting() -> bool:
+	return current_cast != null;
+	
+func get_last_cast() -> Cast:
+	if len(casts) == 0:
+		return null;
+	return casts[-1];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if current_cast == null:
-		if Input.is_action_just_pressed("game_action"):
-			start_cast();
-	else:
-		if Input.is_action_pressed("game_action"):
-			tick_cast(delta);
-		else:
-			finish_cast();
-			
+func _process(delta: float) -> void:		
 	queue_redraw();
 
 func _draw():

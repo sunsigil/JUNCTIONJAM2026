@@ -1,6 +1,6 @@
 extends Node
 
-enum GRADE {
+enum Grade {
 	NONE,
 	C,
 	B,
