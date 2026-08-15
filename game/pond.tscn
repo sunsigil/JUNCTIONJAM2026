@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cioh0da8k68ya" path="res://fisher/fisher.gd" id="3_e62h4"]
 [ext_resource type="Script" uid="uid://b5qp58823ygp8" path="res://fisher/hook.gd" id="4_xpml8"]
 [ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="4_yrlwy"]
-[ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://cutscene/cutscene_engine.gd" id="5_xpml8"]
+[ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://machinery/cutscene_engine.gd" id="5_xpml8"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="7_bu1hh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrlwy"]
