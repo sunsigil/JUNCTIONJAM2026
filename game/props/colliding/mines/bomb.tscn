@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://props/colliding/mines/bomb.gd" id="1_bomb"]
+
+[node name="Bomb" type="Node2D"]
+script = ExtResource("1_bomb")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="Visual"]
+polygon = PackedVector2Array(54, 0, 49.89, 20.66, 38.18, 38.18, 20.66, 49.89, 0, 54, -20.66, 49.89, -38.18, 38.18, -49.89, 20.66, -54, 0, -49.89, -20.66, -38.18, -38.18, -20.66, -49.89, 0, -54, 20.66, -49.89, 38.18, -38.18, 49.89, -20.66)
+color = Color(0.1, 0.18, 0.18, 1)
+
+[node name="Spike01" type="Polygon2D" parent="Visual"]
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike02" type="Polygon2D" parent="Visual"]
+rotation = 0.523599
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike03" type="Polygon2D" parent="Visual"]
+rotation = 1.047198
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike04" type="Polygon2D" parent="Visual"]
+rotation = 1.570796
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike05" type="Polygon2D" parent="Visual"]
+rotation = 2.094395
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike06" type="Polygon2D" parent="Visual"]
+rotation = 2.617994
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike07" type="Polygon2D" parent="Visual"]
+rotation = 3.141593
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike08" type="Polygon2D" parent="Visual"]
+rotation = 3.665191
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike09" type="Polygon2D" parent="Visual"]
+rotation = 4.18879
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike10" type="Polygon2D" parent="Visual"]
+rotation = 4.712389
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike11" type="Polygon2D" parent="Visual"]
+rotation = 5.235988
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
+
+[node name="Spike12" type="Polygon2D" parent="Visual"]
+rotation = 5.759587
+polygon = PackedVector2Array(48, -4, 84, 0, 48, 4)
+color = Color(0.58, 0.18, 0.12, 1)
