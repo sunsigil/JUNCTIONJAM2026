@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://crhylms6jfg66"]
 
 [ext_resource type="Script" uid="uid://buu87jnvx74qm" path="res://fisher/camera.gd" id="1_micnc"]
-[ext_resource type="Texture2D" uid="uid://drld4cjhhyub1" path="res://icon.svg" id="2_4uvmm"]
+[ext_resource type="Script" uid="uid://cioh0da8k68ya" path="res://fisher/fisher.gd" id="3_e62h4"]
+[ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="4_yrlwy"]
 
 [node name="Pond" type="Node2D" unique_id=1705611451]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
 script = ExtResource("1_micnc")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1155609535]
-position = Vector2(-1, 8)
-texture = ExtResource("2_4uvmm")
+[node name="fisher" type="Node" parent="." unique_id=1844896620 groups=["player"]]
+script = ExtResource("3_e62h4")
+
+[node name="rod" type="Node2D" parent="fisher" unique_id=355673590]
+script = ExtResource("4_yrlwy")

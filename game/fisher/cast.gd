@@ -1,6 +1,6 @@
 class_name Cast;
 
-var owner: Node2D;
+var owner: Node;
 var target_t: float;
 var t: float;
 
@@ -29,6 +29,12 @@ func _init(_owner, _target_t, _t):
 	target_t = _target_t;
 	t = _t;
 	grade = Enums.GRADE.NONE;
+	
+func _to_string() -> String:
+	if grade == Enums.GRADE.NONE:
+		return "Cast (Pending): {0}/{1}, by {2}".format([t, target_t, owner]);
+	else:
+		return "Cast ({0}): {1}/{2}, by {3}".format([Enums.GRADE.keys()[grade], t, target_t, owner]);
 	
 func finalize():
 	var error = abs(t-target_t);
