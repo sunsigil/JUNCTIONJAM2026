@@ -7,19 +7,22 @@ enum StageState {
 	STARTED
 }
 
-const STAGE_COUNT: int = 5;
+const STAGE_COUNT: int = 3;
 
 signal stage_start;
 signal stage_end;
 
-var cutscene_engine: CutsceneEngine;
+var player_resource = preload("res://fisher/fisher.tscn");
+var player_instance;
+
 var stage_cutscenes = [
 	Cutscenes.test,
 	Cutscenes.test,
 	Cutscenes.test,
 ];
 
-@export var player: Node2D;
+var win_scene = preload("res://win_menu.tscn");
+var lose_scene = preload("res://lose_menu.tscn");
 
 var stage: int = 0;
 var stage_state = StageState.IDLE;
@@ -28,8 +31,12 @@ func start_stage():
 	stage_state = StageState.QUEUED;
 	if stage < len(stage_cutscenes):
 		Services.find(CutsceneEngine).play(stage_cutscenes[stage]);
+	if stage >= STAGE_COUNT:
+		get_tree().change_scene_to_packed(win_scene);
 	
 func end_stage():
+	player_instance.queue_free();
+	
 	stage_end.emit();
 	stage += 1;
 	stage_state = StageState.IDLE;
@@ -45,8 +52,15 @@ func _ready() -> void:
 	Services.register(StageEngine, self);
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
+	if stage_state == StageState.IDLE:
+		start_stage();
+		return;
+			
 	if stage_state == StageState.QUEUED:
-		if not Services.find(CutsceneEngine).is_playing():
+		if not Services.find(CutsceneEngine).is_playing():	
+			player_instance = player_resource.instantiate();
+			get_tree().root.add_child(player_instance);
+			
 			stage_state = StageState.STARTED;
 			stage_start.emit();

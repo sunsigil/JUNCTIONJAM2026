@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://crhylms6jfg66"]
 
 [ext_resource type="Script" uid="uid://buu87jnvx74qm" path="res://fisher/camera.gd" id="1_micnc"]
-[ext_resource type="PackedScene" uid="uid://dbhxdgxjcoie5" path="res://fisher/fisher.tscn" id="2_4dpsv"]
 [ext_resource type="Texture2D" uid="uid://drld4cjhhyub1" path="res://icon.svg" id="2_4uvmm"]
 [ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://machinery/cutscene_engine.gd" id="5_xpml8"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="7_bu1hh"]
@@ -12,8 +11,6 @@
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
 script = ExtResource("1_micnc")
-
-[node name="fisher" parent="." unique_id=1207466166 instance=ExtResource("2_4dpsv")]
 
 [node name="stage_engine" type="Node" parent="." unique_id=197921989]
 script = ExtResource("8_tmh31")

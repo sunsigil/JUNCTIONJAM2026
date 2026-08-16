@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://degofuclnrjmv"]
 
 [ext_resource type="Texture2D" uid="uid://pmkfu4imxm" path="res://test/main_menu.png" id="1_lti8b"]
-[ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/main_menu.gd" id="1_ouk20"]
+[ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_ouk20"]
+[ext_resource type="PackedScene" uid="uid://crhylms6jfg66" path="res://pond.tscn" id="2_jix8l"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="3_mae5d"]
 
 [node name="Menu" type="Node2D" unique_id=1720330520]
 script = ExtResource("1_ouk20")
+scene = ExtResource("2_jix8l")
+prompt = "[GO FISH]"
+post_prompt = "GONE FISHING..."
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=466279141]
 offset_right = 1920.0

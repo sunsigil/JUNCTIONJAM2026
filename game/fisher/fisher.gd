@@ -7,8 +7,6 @@ enum State
 	LURING
 };
 
-var stage_engine: StageEngine;
-
 var rod: Node2D;
 var hook: Node2D;
 
@@ -51,15 +49,10 @@ func hook_logic():
 	
 	if Input.is_action_just_pressed("game_action"):
 		Services.find(EffectEngine).major_hitstop();
+		Services.find(StageEngine).end_stage();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	stage_engine = Services.find(StageEngine);
-	if stage_engine.is_idle():
-		stage_engine.start_stage();
-	if not stage_engine.is_stage_started():
-		return;
-				
+func _process(delta: float) -> void:				
 	match state:
 		State.IDLE:
 			state = State.CASTING;

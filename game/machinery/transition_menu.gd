@@ -1,6 +1,8 @@
 extends Node
 
-var game_scene = preload("res://pond.tscn");
+@export var scene: PackedScene;
+@export var prompt: String;
+@export var post_prompt: String;
 
 var trigger = false;
 var t: float = 0;
@@ -20,12 +22,12 @@ func _process(delta: float) -> void:
 		
 	if trigger:
 		image_node.modulate.a = 1.0-t*1.5;
-		text_node.text = "NOW FISHING...";
+		text_node.text = post_prompt;
 		text_node.modulate.a = image_node.modulate.a;
 		t += delta;
 	else:
+		text_node.text = prompt;
 		text_node.scale = Vector2.ONE * Curves.breathe(0.75, 1, Time.get_ticks_msec()/1000.0);
 		
 	if t >= 1.0:
-		queue_free();
-		get_tree().change_scene_to_packed(game_scene);
+		get_tree().change_scene_to_packed(scene);
