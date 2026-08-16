@@ -79,6 +79,8 @@ func refresh():
 	text_node.text = text;
 
 func _ready():
+	Services.register(CutsceneEngine, self);
+	
 	background_rect = get_node("background_colour");
 	background_node = get_node("background");
 	portrait_nodes = [

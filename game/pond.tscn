@@ -1,39 +1,24 @@
 [gd_scene format=3 uid="uid://crhylms6jfg66"]
 
 [ext_resource type="Script" uid="uid://buu87jnvx74qm" path="res://fisher/camera.gd" id="1_micnc"]
+[ext_resource type="PackedScene" uid="uid://dbhxdgxjcoie5" path="res://fisher/fisher.tscn" id="2_4dpsv"]
 [ext_resource type="Texture2D" uid="uid://drld4cjhhyub1" path="res://icon.svg" id="2_4uvmm"]
-[ext_resource type="Script" uid="uid://cioh0da8k68ya" path="res://fisher/fisher.gd" id="3_e62h4"]
-[ext_resource type="Script" uid="uid://b5qp58823ygp8" path="res://fisher/hook.gd" id="4_xpml8"]
-[ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="4_yrlwy"]
 [ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://machinery/cutscene_engine.gd" id="5_xpml8"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="7_bu1hh"]
+[ext_resource type="Script" uid="uid://b3erf8ox0i3f2" path="res://fisher/effect_engine.gd" id="7_tmh31"]
 [ext_resource type="Script" uid="uid://br8wok3bfaw70" path="res://machinery/stage_engine.gd" id="8_tmh31"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yrlwy"]
 
 [node name="Pond" type="Node2D" unique_id=1705611451]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
 script = ExtResource("1_micnc")
 
-[node name="fisher" type="Node" parent="." unique_id=1844896620 groups=["player"]]
-script = ExtResource("3_e62h4")
+[node name="fisher" parent="." unique_id=1207466166 instance=ExtResource("2_4dpsv")]
 
-[node name="rod" type="Node2D" parent="fisher" unique_id=355673590]
-script = ExtResource("4_yrlwy")
-width = 800.0
-
-[node name="hook" type="CharacterBody2D" parent="fisher" unique_id=85991419]
-script = ExtResource("4_xpml8")
-radius = 25.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fisher/hook" unique_id=1750595037]
-shape = SubResource("CircleShape2D_yrlwy")
-
-[node name="stage_engine" type="Node" parent="." unique_id=197921989 groups=["stage_engine"]]
+[node name="stage_engine" type="Node" parent="." unique_id=197921989]
 script = ExtResource("8_tmh31")
 
-[node name="cutscene_engine" type="Node2D" parent="." unique_id=103527535 groups=["cutscene_engine"]]
+[node name="cutscene_engine" type="Node2D" parent="." unique_id=103527535]
 script = ExtResource("5_xpml8")
 
 [node name="background_colour" type="ColorRect" parent="cutscene_engine" unique_id=2005704502]
@@ -65,3 +50,11 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_bu1hh")
 theme_override_font_sizes/font_size = 48
 text = "Hello, world!"
+
+[node name="effect_engine" type="Node" parent="." unique_id=909962787 node_paths=PackedStringArray("camera")]
+script = ExtResource("7_tmh31")
+camera = NodePath("../Camera2D")
+
+[node name="hitstop" type="Timer" parent="effect_engine" unique_id=48519495]
+autostart = true
+ignore_time_scale = true

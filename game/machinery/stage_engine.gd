@@ -19,14 +19,15 @@ var stage_cutscenes = [
 	Cutscenes.test,
 ];
 
+@export var player: Node2D;
+
 var stage: int = 0;
 var stage_state = StageState.IDLE;
 
 func start_stage():
-	print(get_tree().get_first_node_in_group("cutscene_engine"));
 	stage_state = StageState.QUEUED;
 	if stage < len(stage_cutscenes):
-		cutscene_engine.play(stage_cutscenes[stage]);
+		Services.find(CutsceneEngine).play(stage_cutscenes[stage]);
 	
 func end_stage():
 	stage_end.emit();
@@ -41,11 +42,11 @@ func is_stage_started():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cutscene_engine = get_tree().get_first_node_in_group("cutscene_engine");
-
+	Services.register(StageEngine, self);
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:	
 	if stage_state == StageState.QUEUED:
-		if not cutscene_engine.is_playing():
+		if not Services.find(CutsceneEngine).is_playing():
 			stage_state = StageState.STARTED;
 			stage_start.emit();

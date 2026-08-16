@@ -12,7 +12,6 @@ var text_node: Label;
 func _ready() -> void:
 	image_node = get_node("image");
 	text_node = get_node("text");
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dbhxdgxjcoie5"]
+
+[ext_resource type="Script" uid="uid://cioh0da8k68ya" path="res://fisher/fisher.gd" id="1_xc628"]
+[ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="2_xljp0"]
+[ext_resource type="Script" uid="uid://b5qp58823ygp8" path="res://fisher/hook.gd" id="3_xyebp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yrlwy"]
+
+[node name="fisher" type="Node" unique_id=1207466166 groups=["player"]]
+script = ExtResource("1_xc628")
+
+[node name="rod" type="Node2D" parent="." unique_id=12496540]
+script = ExtResource("2_xljp0")
+width = 800.0
+
+[node name="hook" type="CharacterBody2D" parent="." unique_id=1576781238]
+script = ExtResource("3_xyebp")
+radius = 25.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hook" unique_id=1435642765]
+shape = SubResource("CircleShape2D_yrlwy")

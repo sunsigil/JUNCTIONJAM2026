@@ -15,9 +15,7 @@ var hook: Node2D;
 var state: State = State.IDLE;
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	stage_engine = get_tree().get_first_node_in_group("stage_engine");
-	
+func _ready() -> void:	
 	rod = get_node("rod");
 	hook = get_node("hook");
 	
@@ -50,9 +48,13 @@ func hook_logic():
 	hook.move(input);
 	
 	hook.display();
+	
+	if Input.is_action_just_pressed("game_action"):
+		Services.find(EffectEngine).major_hitstop();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	stage_engine = Services.find(StageEngine);
 	if stage_engine.is_idle():
 		stage_engine.start_stage();
 	if not stage_engine.is_stage_started():

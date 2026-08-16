@@ -129,7 +129,6 @@ func _get_shape_iteration_stiffness() -> float:
 	var safe_iterations := maxi(solver_iterations, 1)
 	return 1.0 - pow(1.0 - shape_stiffness, 1.0 / float(safe_iterations))
 
-
 func _solve_constraint(
 		first_index: int,
 		second_index: int,
