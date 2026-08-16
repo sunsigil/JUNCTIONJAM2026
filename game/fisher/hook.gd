@@ -1,3 +1,4 @@
+class_name Hook
 extends CharacterBody2D
 var _display: bool;
 func display():
@@ -49,10 +50,17 @@ var retarget_timer: Timer;
 var target_state: TargetState;
 
 var progress = 0.0;
-var health = 1.0;
 var on_time: float;
 var off_time: float;
 var hit_count: int;
+
+var health = 1.0;
+var attack_queue: Array[Attack];
+var hitstop: Timer;
+var hurt_cooldown: Timer;
+	
+func move(dir: Vector2):
+	buffered_input = dir;
 
 func retarget():
 	retarget_dir = -1 if randf() < turn_prob else 1;
@@ -67,9 +75,9 @@ func retarget():
 	retarget_speed = randf_range(min_retarget_speed, max_retarget_speed);
 	retarget_timer.wait_time = randf_range(min_retarget_wait, max_retarget_wait);
 	retarget_timer.start();
-	
-func move(dir: Vector2):
-	buffered_input = dir;
+
+func queue_attack(attack: Attack):
+	attack_queue.append(attack);	
 
 func get_style():
 	var coverage = on_time / off_time;
@@ -79,6 +87,7 @@ func get_style():
 
 func _ready() -> void:
 	retarget_timer = get_node("retarget");
+	hurt_cooldown = get_node("hurt_cooldown");
 
 	global_position = Vector2(0, 0);
 
@@ -139,9 +148,30 @@ func _targeting(delta):
 		off_time += delta;
 	progress = clamp(progress, 0, 1);
 
+func _handle_attacks():
+	if attack_queue.is_empty():
+		return;
+	if not hurt_cooldown.is_stopped():
+		return;
+	
+	while not attack_queue.is_empty():
+		var attack = attack_queue.front();
+		health -= attack.damage;
+		attack_queue.pop_front();
+
+	Services.find(EffectEngine).major_hitstop();
+
+	if health <= 0:
+		Services.find(StageEngine).lose();
+	
+	hurt_cooldown.start();
+	await hurt_cooldown.timeout;
+	hurt_cooldown.stop();
+
 func _process(delta):
 	_movement(delta);
 	_targeting(delta);
+	_handle_attacks();
 
 	queue_redraw();
 

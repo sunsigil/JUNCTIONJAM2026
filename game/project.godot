@@ -59,6 +59,13 @@ game_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Environment"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Attack"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
