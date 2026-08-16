@@ -8,14 +8,21 @@ enum State {
 }
 
 const INITIAL_POINTS: Array[Vector2] = [
-	Vector2(64.0, 0.0),
-	Vector2(30.0, 0.0),
-	Vector2(-4.0, 0.0),
-	Vector2(-36.0, 0.0),
-	Vector2(-64.0, 0.0),
+	Vector2(60.666667, 0.0),
+	Vector2(31.5, -1.5),
+	Vector2(4.0, -10.499999),
+	Vector2(-32.000001, 0.0),
+	Vector2(-72.666667, 0.0),
 ]
-const SEGMENT_LENGTHS: Array[float] = [34.0, 34.0, 32.0, 28.0]
-const SHAPE_LENGTHS: Array[float] = [64.0, 62.0, 56.0]
+const SEGMENT_LENGTHS: Array[float] = [29.205213, 28.935272, 37.500001, 40.666666]
+const SHAPE_LENGTHS: Array[float] = [57.631251, 63.517715, 77.382348]
+const PIECE_ROTATION_OFFSETS: Array[float] = [
+	-0.051383302,
+	-0.051383302,
+	-0.316286095,
+	0.283794076,
+	0.0,
+]
 const SWIM_COLOR := Color("4bb8de")
 const NIBBLE_COLOR := Color("f2a65a")
 
@@ -24,6 +31,13 @@ const NIBBLE_COLOR := Color("f2a65a")
 @export_range(0.0, 1.0, 0.01) var damping: float = 0.92
 @export_range(0.0, 1.0, 0.01) var shape_stiffness: float = 0.55
 @export var wake_strength: float = 120.0
+
+@export_category("PBD Debug")
+@export var show_pbd_debug: bool = false:
+	set(value):
+		show_pbd_debug = value
+		if is_node_ready():
+			_sync_pbd_debug_overlay()
 
 @export_category("Swim Movement")
 @export var swim_range: Vector2 = Vector2(620.0, 220.0)
@@ -47,6 +61,7 @@ const NIBBLE_COLOR := Color("f2a65a")
 @onready var lower_body: Polygon2D = $Pieces/LowerBody
 @onready var body_end: Polygon2D = $Pieces/BodyEnd
 @onready var tail: Polygon2D = $Pieces/Tail
+@onready var pbd_debug_overlay: PBDDebugOverlay = $PBDDebugOverlay
 
 var points: Array[Vector2] = []
 var previous_points: Array[Vector2] = []
@@ -66,6 +81,7 @@ func _ready() -> void:
 	pieces = [head, upper_body, lower_body, body_end, tail]
 	swim_center = position
 	_reset_points()
+	_sync_pbd_debug_overlay()
 	_apply_debug_color()
 	_update_piece_transforms()
 	state_changed.emit(get_state_name())
@@ -205,7 +221,14 @@ func _update_piece_transforms() -> void:
 		pieces[index].position = points[index]
 		var facing := points[0] - points[1] if index == 0 else points[index - 1] - points[index]
 		if not facing.is_zero_approx():
-			pieces[index].rotation = facing.angle()
+			pieces[index].rotation = facing.angle() + PIECE_ROTATION_OFFSETS[index]
+	_sync_pbd_debug_overlay()
+
+
+func _sync_pbd_debug_overlay() -> void:
+	pbd_debug_overlay.visible = show_pbd_debug
+	if show_pbd_debug:
+		pbd_debug_overlay.set_debug_points(points.duplicate())
 
 
 func _update_nibble_timeout() -> void:

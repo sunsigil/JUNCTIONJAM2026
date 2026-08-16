@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgroccw2ok1rn"]
 
 [ext_resource type="Script" uid="uid://ckccujge7cccs" path="res://fish/fish.gd" id="1_fish"]
+[ext_resource type="Script" uid="uid://bo87ac4li6q4y" path="res://fish/pbd_debug_overlay.gd" id="2_pbd_debug"]
 
 [node name="Fish" type="Node2D" unique_id=1899075685]
 script = ExtResource("1_fish")
@@ -9,20 +10,25 @@ script = ExtResource("1_fish")
 
 [node name="Head" type="Polygon2D" parent="Pieces" unique_id=1017787644]
 color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(18, 0, -14, -14, -14, 14)
+polygon = PackedVector2Array(21.333333, 0, -10.666667, -14, -10.666667, 14)
 
 [node name="UpperBody" type="Polygon2D" parent="Pieces" unique_id=1714370418]
 color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(9.214504, -19.624191, 9.783497, 16.37131, -6.214505, 16.624191, -6.783496, -19.37131)
+polygon = PackedVector2Array(7.714504, -18.124191, 8.283497, 17.87131, -7.714505, 18.124191, -8.283496, -17.87131)
 
 [node name="LowerBody" type="Polygon2D" parent="Pieces" unique_id=1819391304]
 color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(14.698784, -17.62093, 15.299034, 16.373768, 1.3012161, 16.62093, 0.7009697, -17.373768)
+polygon = PackedVector2Array(10.058577, -15.389119, 3.693937, 18.009851, -10.058578, 15.389117, -3.693935, -18.009852)
 
 [node name="BodyEnd" type="Polygon2D" parent="Pieces" unique_id=1379019299]
 color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(-16, 0, 14, -11, 14, 11)
+polygon = PackedVector2Array(-15.975284, 12.032883, 1.369556, -14.802847, 14.605728, 2.769965)
 
 [node name="Tail" type="Polygon2D" parent="Pieces" unique_id=29228791]
 color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(10, 0, -18, -18, -18, 18)
+polygon = PackedVector2Array(18.666667, 0, -9.333333, -18, -9.333333, 18)
+
+[node name="PBDDebugOverlay" type="Node2D" parent="." unique_id=2027726319]
+visible = false
+z_index = 10
+script = ExtResource("2_pbd_debug")
