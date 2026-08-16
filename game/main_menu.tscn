@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://degofuclnrjmv"]
 
-[ext_resource type="Texture2D" uid="uid://pmkfu4imxm" path="res://test/main_menu.png" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_ouk20"]
 [ext_resource type="PackedScene" uid="uid://crhylms6jfg66" path="res://pond.tscn" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://cmmxavkvkqpa7" path="res://artwork/cg/title.png" id="3_jix8l"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="3_mae5d"]
 
 [node name="Menu" type="Node2D" unique_id=1720330520]
@@ -18,14 +18,13 @@ offset_bottom = 1080.0
 [node name="image" type="Sprite2D" parent="." unique_id=1771881550]
 texture_filter = 1
 position = Vector2(960, 540)
-scale = Vector2(10, 10)
-texture = ExtResource("1_lti8b")
+texture = ExtResource("3_jix8l")
 
 [node name="text" type="Label" parent="." unique_id=449357181]
 offset_left = 760.0
-offset_top = 750.0
+offset_top = 886.0
 offset_right = 1166.0
-offset_bottom = 809.0
+offset_bottom = 945.0
 pivot_offset = Vector2(200, 30)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
