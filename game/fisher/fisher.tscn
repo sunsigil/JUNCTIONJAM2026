@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://wbqg3spgfu3o" path="res://fisher/rod.gd" id="2_xljp0"]
 [ext_resource type="Script" uid="uid://b5qp58823ygp8" path="res://fisher/hook.gd" id="3_xyebp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yrlwy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tmh31"]
+radius = 35.057095
 
 [node name="fisher" type="Node2D" unique_id=508495536 groups=["player"]]
 script = ExtResource("1_xc628")
@@ -13,9 +14,12 @@ script = ExtResource("1_xc628")
 script = ExtResource("2_xljp0")
 
 [node name="hook" type="CharacterBody2D" parent="." unique_id=1576781238]
+collision_layer = 2
 script = ExtResource("3_xyebp")
 
 [node name="retarget" type="Timer" parent="hook" unique_id=1041099768]
 
-[node name="collider" type="CollisionShape2D" parent="hook" unique_id=1435642765]
-shape = SubResource("CircleShape2D_yrlwy")
+[node name="blocker" type="CollisionShape2D" parent="hook" unique_id=1435642765]
+shape = SubResource("CircleShape2D_tmh31")
+
+[node name="hurt_cooldown" type="Timer" parent="hook" unique_id=1917846157]

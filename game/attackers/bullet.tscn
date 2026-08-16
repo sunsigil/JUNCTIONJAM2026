@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cc3pbg0gm5h0c"]
+
+[ext_resource type="Script" uid="uid://dw13kn8we45qe" path="res://attackers/bullet.gd" id="1_elbpw"]
+[ext_resource type="Texture2D" uid="uid://3c74jw4hepco" path="res://artwork/mine.png" id="2_ctxk0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ens7e"]
+radius = 23.021729
+
+[node name="bullet" type="Node2D" unique_id=992522056]
+script = ExtResource("1_elbpw")
+damage = 0.1
+speed = 200.0
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=344595710]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ctxk0")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=93515690]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1448039555]
+shape = SubResource("CircleShape2D_ens7e")
