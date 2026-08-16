@@ -36,10 +36,13 @@ func start_stage():
 	
 func end_stage():
 	player_instance.queue_free();
-	
 	stage_end.emit();
 	stage += 1;
 	stage_state = StageState.IDLE;
+
+func lose():
+	player_instance.queue_free();
+	get_tree().change_scene_to_packed(lose_scene);
 	
 func is_idle():
 	return stage_state == StageState.IDLE;

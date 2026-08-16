@@ -3,6 +3,9 @@ extends Node;
 func ease_out_quad(t: float):
 	return 1 - (1 - t) * (1 - t);
 
+func ease_in_cubic(t: float):
+	return t * t * t;
+
 func breathe(a, b, t: float):
 	a = float(a);
 	b = float(b);

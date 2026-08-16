@@ -15,7 +15,8 @@ width = 800.0
 
 [node name="hook" type="CharacterBody2D" parent="." unique_id=1576781238]
 script = ExtResource("3_xyebp")
-radius = 25.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hook" unique_id=1435642765]
+[node name="retarget" type="Timer" parent="hook" unique_id=1041099768]
+
+[node name="collider" type="CollisionShape2D" parent="hook" unique_id=1435642765]
 shape = SubResource("CircleShape2D_yrlwy")

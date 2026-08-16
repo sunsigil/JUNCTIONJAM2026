@@ -22,9 +22,9 @@ texture = ExtResource("3_jix8l")
 
 [node name="text" type="Label" parent="." unique_id=449357181]
 offset_left = 760.0
-offset_top = 886.0
+offset_top = 888.0
 offset_right = 1166.0
-offset_bottom = 945.0
+offset_bottom = 947.0
 pivot_offset = Vector2(200, 30)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1

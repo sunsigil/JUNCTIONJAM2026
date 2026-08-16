@@ -1,16 +1,18 @@
+class_name Fisher
 extends Node
 
 enum State
 {
 	IDLE,
 	CASTING,
-	LURING
+	LURING,
 };
 
 var rod: Node2D;
 var hook: Node2D;
 
 var state: State = State.IDLE;
+var style = 0.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
@@ -18,18 +20,19 @@ func _ready() -> void:
 	hook = get_node("hook");
 	
 func rod_logic(delta):
-	if rod.is_casting():
+	if rod.current_cast != null and rod.current_cast.grade != Enums.Grade.NONE:
+		if Input.is_action_just_pressed("game_action"):
+			state = State.LURING;
+	elif rod.is_casting():
 		if Input.is_action_pressed("game_action"):
 			rod.tick_cast(delta);
 		else:
 			rod.finish_cast();
-			state = State.LURING;
 	elif rod.is_ready():
 		if Input.is_action_just_pressed("game_action"):
 			rod.start_cast();
 	else:
-		if Input.is_action_just_released("game_action"):
-			rod.prepare_cast();
+		rod.prepare_cast();
 	
 	rod.display();
 			
@@ -46,10 +49,6 @@ func hook_logic():
 	hook.move(input);
 	
 	hook.display();
-	
-	if Input.is_action_just_pressed("game_action"):
-		Services.find(EffectEngine).major_hitstop();
-		Services.find(StageEngine).end_stage();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:				
@@ -60,3 +59,7 @@ func _process(delta: float) -> void:
 			rod_logic(delta);
 		State.LURING:
 			hook_logic();
+			if hook.progress >= 1.0:
+				Services.find(StageEngine).end_stage();
+			if hook.health <= 0.0:
+				Services.find(StageEngine).lose();

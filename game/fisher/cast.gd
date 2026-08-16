@@ -3,13 +3,11 @@ class_name Cast;
 var owner: Node;
 var target_t: float;
 var t: float;
+var overshoot_t: float;
 var grade: Enums.Grade;
 
 func make_grade(t: float):
-	if t > 1.15:
-		return Enums.Grade.C;
-	if t > 1.05:
-		return Enums.Grade.B;
+	t = clamp(t, 0, 1);
 	if t > 0.975:
 		return Enums.Grade.SSS;
 	if t > 0.95:
@@ -37,4 +35,5 @@ func _to_string() -> String:
 	
 func finalize():
 	var error = abs(t-target_t);
+	error += overshoot_t;
 	grade = make_grade(1.0-error);

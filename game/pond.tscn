@@ -9,11 +9,18 @@
 
 [node name="Pond" type="Node2D" unique_id=1705611451]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
-script = ExtResource("1_micnc")
-
 [node name="stage_engine" type="Node" parent="." unique_id=197921989]
 script = ExtResource("8_tmh31")
+
+[node name="effect_engine" type="Node" parent="." unique_id=909962787 node_paths=PackedStringArray("camera")]
+script = ExtResource("7_tmh31")
+camera = NodePath("../Camera2D")
+
+[node name="hitstop" type="Timer" parent="effect_engine" unique_id=48519495]
+ignore_time_scale = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
+script = ExtResource("1_micnc")
 
 [node name="cutscene_engine" type="Node2D" parent="." unique_id=103527535]
 script = ExtResource("5_xpml8")
@@ -47,11 +54,3 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_bu1hh")
 theme_override_font_sizes/font_size = 48
 text = "Hello, world!"
-
-[node name="effect_engine" type="Node" parent="." unique_id=909962787 node_paths=PackedStringArray("camera")]
-script = ExtResource("7_tmh31")
-camera = NodePath("../Camera2D")
-
-[node name="hitstop" type="Timer" parent="effect_engine" unique_id=48519495]
-autostart = true
-ignore_time_scale = true
