@@ -8,6 +8,8 @@ extends Node2D
 
 @onready var visual: Node2D = $Visual
 
+
+
 var origin: Vector2 = Vector2.ZERO
 var movement_time: float = 0.0
 
