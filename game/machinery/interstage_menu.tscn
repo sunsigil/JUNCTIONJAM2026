@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://x8mdgs6a1ns6"]
+
+[ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_voy2k"]
+[ext_resource type="PackedScene" uid="uid://crhylms6jfg66" path="res://pond.tscn" id="2_nea88"]
+[ext_resource type="Texture2D" uid="uid://crqawt0ujg3y8" path="res://artwork/cg/fisher.png" id="3_f5d7j"]
+[ext_resource type="Texture2D" uid="uid://coyt0tk671sdc" path="res://artwork/cg/fish.png" id="4_1ivuc"]
+[ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="5_jxugs"]
+
+[node name="Menu" type="Node2D" unique_id=1720330520]
+script = ExtResource("1_voy2k")
+scene = ExtResource("2_nea88")
+prompt = "[CONTINUE]"
+post_prompt = "ONCE MORE..."
+
+[node name="bg" type="ColorRect" parent="." unique_id=466279141]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="image" type="Node2D" parent="." unique_id=395195296]
+
+[node name="fisher" type="Sprite2D" parent="image" unique_id=1771881550]
+texture_filter = 1
+position = Vector2(960, 540)
+texture = ExtResource("3_f5d7j")
+
+[node name="fish" type="Sprite2D" parent="image" unique_id=1856571106]
+texture_filter = 1
+position = Vector2(960, 540)
+texture = ExtResource("4_1ivuc")
+
+[node name="text" type="Label" parent="." unique_id=449357181]
+offset_left = 1580.0
+offset_top = 1011.0
+offset_right = 1986.0
+offset_bottom = 1070.0
+pivot_offset = Vector2(200, 30)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_jxugs")
+theme_override_font_sizes/font_size = 48
+text = "[EXAMPLE]"
+horizontal_alignment = 1
+vertical_alignment = 1

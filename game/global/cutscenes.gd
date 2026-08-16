@@ -1,4 +1,4 @@
-class_name Cutscenes
+extends Node
 
 static var test_bgs = [
 	preload("res://test/img_cutsc_0.png"),
@@ -22,4 +22,8 @@ static var test: Array[CutsceneEngine.CutsceneCommand] = [
 	CutsceneEngine.SET_TEXT(""),
 	CutsceneEngine.SET_BACKGROUND(test_bgs[2]),
 	CutsceneEngine.SET_TEXT(""),
+];
+
+static var cutscenes = [
+	test
 ];

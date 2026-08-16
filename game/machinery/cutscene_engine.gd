@@ -65,6 +65,7 @@ func progress():
 	command_idx += 1;
 	if command_idx >= len(cutscene):
 		cutscene = [];
+		get_tree().change_scene_to_file("res://pond.tscn");
 	
 var background_rect: ColorRect;
 var background_node: Sprite2D;
@@ -91,6 +92,8 @@ func _ready():
 	
 	clear();
 	refresh();
+
+	play(Cutscenes.cutscenes[Progress.stage]);
 	
 func _process(delta: float) -> void:
 	if not is_playing():

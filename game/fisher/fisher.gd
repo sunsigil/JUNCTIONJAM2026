@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 			rod_logic(delta);
 		State.LURING:
 			hook_logic();
-			if hook.progress >= 1.0:
+			if hook.progress >= 0.1:
 				Services.find(StageEngine).end_stage();
 			if hook.health <= 0.0:
 				Services.find(StageEngine).lose();

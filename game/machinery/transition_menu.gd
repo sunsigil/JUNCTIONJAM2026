@@ -7,7 +7,7 @@ extends Node
 var trigger = false;
 var t: float = 0;
 
-var image_node: Sprite2D;
+var image_node: Node2D;
 var text_node: Label;
 
 # Called when the node enters the scene tree for the first time.

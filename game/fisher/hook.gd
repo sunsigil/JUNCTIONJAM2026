@@ -79,6 +79,9 @@ func get_style():
 
 func _ready() -> void:
 	retarget_timer = get_node("retarget");
+
+	global_position = Vector2(0, 0);
+
 	retarget();
 
 func _movement(delta):
@@ -160,6 +163,7 @@ func _draw():
 	_display = false;
 		
 	draw_circle(Vector2.ZERO, radius, Color.WHITE, false);
+	draw_line(Vector2.ZERO, to_local(get_parent().position), Color.WHITE);
 	
 	var R = radius + orbit_dist;
 	draw_arc(Vector2.ZERO, R, base_gizmo_angle, base_gizmo_angle+gizmo_arc, 64, Color.WHITE, 1);

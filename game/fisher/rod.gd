@@ -3,10 +3,8 @@ var _display: bool;
 func display():
 	_display = true;
 
-@export
-var width: float = 400;
-@export
-var height: float = 50;
+const width: float = 800;
+const height: float = 40;
 
 var casts: Array[Cast] = [];
 var current_cast: Cast = null;
@@ -59,8 +57,8 @@ func _draw():
 		return;
 	_display = false;
 		
-	var x0 = position.x-width/2;
-	var y0 = position.y-height/2;
+	var x0 = position.x;
+	var y0 = position.y;
 	draw_rect(Rect2(x0, y0, width, height), Color.CADET_BLUE);
 	
 	if not is_ready():
