@@ -8,20 +8,20 @@ enum State {
 }
 
 const INITIAL_POINTS: Array[Vector2] = [
-	Vector2(60.666667, 0.0),
-	Vector2(31.5, -1.5),
-	Vector2(4.0, -10.499999),
-	Vector2(-32.000001, 0.0),
-	Vector2(-72.666667, 0.0),
+	Vector2(-160.0, 0.0),
+	Vector2(-78.5, 0.0),
+	Vector2(1.0, 0.0),
+	Vector2(59.5, 0.0),
+	Vector2(149.5, 0.0),
 ]
-const SEGMENT_LENGTHS: Array[float] = [29.205213, 28.935272, 37.500001, 40.666666]
-const SHAPE_LENGTHS: Array[float] = [57.631251, 63.517715, 77.382348]
+const SEGMENT_LENGTHS: Array[float] = [81.5, 79.5, 58.5, 90.0]
+const SHAPE_LENGTHS: Array[float] = [161.0, 138.0, 148.5]
 const PIECE_ROTATION_OFFSETS: Array[float] = [
-	-0.051383302,
-	-0.051383302,
-	-0.316286095,
-	0.283794076,
-	0.0,
+	-PI,
+	-PI,
+	-PI,
+	-PI,
+	-PI,
 ]
 const SWIM_COLOR := Color("4bb8de")
 const NIBBLE_COLOR := Color("f2a65a")
@@ -56,16 +56,19 @@ const NIBBLE_COLOR := Color("f2a65a")
 @export_range(1, 8, 1) var nibble_pulse_cycles: int = 2
 @export var nibble_distance: float = 12.0
 
-@onready var head: Polygon2D = $Pieces/Head
-@onready var upper_body: Polygon2D = $Pieces/UpperBody
-@onready var lower_body: Polygon2D = $Pieces/LowerBody
-@onready var body_end: Polygon2D = $Pieces/BodyEnd
-@onready var tail: Polygon2D = $Pieces/Tail
+@onready var artwork: Node2D = $Artwork
+@onready var pieces_root: Node2D = $Artwork/Pieces
+@onready var head: Node2D = $Artwork/Pieces/Head
+@onready var upper_body: Node2D = $Artwork/Pieces/UpperBody
+@onready var lower_body: Node2D = $Artwork/Pieces/LowerBody
+@onready var body_end: Node2D = $Artwork/Pieces/BodyEnd
+@onready var tail: Node2D = $Artwork/Pieces/Tail
+@onready var connector: FishConnectorOverlay = $Artwork/ConnectorOverlay
 @onready var pbd_debug_overlay: PBDDebugOverlay = $PBDDebugOverlay
 
 var points: Array[Vector2] = []
 var previous_points: Array[Vector2] = []
-var pieces: Array[Polygon2D] = []
+var pieces: Array[Node2D] = []
 var state: State = State.SWIM
 var state_origin: Vector2 = INITIAL_POINTS[0]
 var state_elapsed: float = 0.0
@@ -79,6 +82,7 @@ var vertical_swim_active: bool = false
 
 func _ready() -> void:
 	pieces = [head, upper_body, lower_body, body_end, tail]
+	connector.set_rest_points(INITIAL_POINTS)
 	swim_center = position
 	_reset_points()
 	_sync_pbd_debug_overlay()
@@ -186,7 +190,8 @@ func _update_swim_movement(delta: float) -> void:
 	var tangent := _get_swim_tangent()
 	if not tangent.is_zero_approx():
 		var turn_weight := clampf(turn_speed * delta, 0.0, 1.0)
-		rotation = lerp_angle(rotation, tangent.angle(), turn_weight)
+		var target_heading := tangent.angle() + PI
+		rotation = lerp_angle(rotation, target_heading, turn_weight)
 
 
 func _get_swim_offset() -> Vector2:
@@ -222,6 +227,7 @@ func _update_piece_transforms() -> void:
 		var facing := points[0] - points[1] if index == 0 else points[index - 1] - points[index]
 		if not facing.is_zero_approx():
 			pieces[index].rotation = facing.angle() + PIECE_ROTATION_OFFSETS[index]
+	connector.set_points(points)
 	_sync_pbd_debug_overlay()
 
 
@@ -254,5 +260,4 @@ func _set_state(next_state: State) -> void:
 
 func _apply_debug_color() -> void:
 	var debug_color := NIBBLE_COLOR if state == State.NIBBLE else SWIM_COLOR
-	for piece in pieces:
-		piece.color = debug_color
+	artwork.modulate = debug_color

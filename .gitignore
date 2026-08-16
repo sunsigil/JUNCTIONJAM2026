@@ -22,3 +22,9 @@ sandbox/*
 
 # Yup
 .DS_Store
+game/artwork/cg/fisher_s.png.import
+game/artwork/fish/connect_one.png.import
+game/artwork/fish/end_to_tail.png.import
+game/artwork/fish/head_to_upper.png.import
+game/artwork/fish/lower_to_end.png.import
+game/artwork/fish/upper_to_lower.png.import

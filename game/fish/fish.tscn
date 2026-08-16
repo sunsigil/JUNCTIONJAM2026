@@ -1,34 +1,95 @@
-[gd_scene format=3 uid="uid://bgroccw2ok1rn"]
+[gd_scene load_steps=13 format=3 uid="uid://bgroccw2ok1rn"]
 
 [ext_resource type="Script" uid="uid://ckccujge7cccs" path="res://fish/fish.gd" id="1_fish"]
-[ext_resource type="Script" uid="uid://bo87ac4li6q4y" path="res://fish/pbd_debug_overlay.gd" id="2_pbd_debug"]
+[ext_resource type="Script" uid="uid://brgvxaqm4fphc" path="res://fish/fish_connector_overlay.gd" id="2_connector"]
+[ext_resource type="Script" uid="uid://bo87ac4li6q4y" path="res://fish/pbd_debug_overlay.gd" id="3_pbd_debug"]
+[ext_resource type="Texture2D" uid="uid://dvmq7l1sd6gem" path="res://artwork/fish/head.png" id="4_head"]
+[ext_resource type="Texture2D" uid="uid://cv1h8vae6lc3t" path="res://artwork/fish/upper_body.png" id="5_upper_body"]
+[ext_resource type="Texture2D" uid="uid://bunlkbck2fa3b" path="res://artwork/fish/lower_body.png" id="6_lower_body"]
+[ext_resource type="Texture2D" uid="uid://btviei0c6t5oq" path="res://artwork/fish/body_end.png" id="7_body_end"]
+[ext_resource type="Texture2D" uid="uid://enpyvdstsjli" path="res://artwork/fish/tail.png" id="8_tail"]
+[ext_resource type="Texture2D" uid="uid://d4cvd8pyiauly" path="res://artwork/fish/head_to_upper.png" id="9_head_to_upper"]
+[ext_resource type="Texture2D" uid="uid://c2ypcgsmqd6me" path="res://artwork/fish/upper_to_lower.png" id="10_upper_to_lower"]
+[ext_resource type="Texture2D" uid="uid://dgvsfbv0yutk2" path="res://artwork/fish/lower_to_end.png" id="11_lower_to_end"]
+[ext_resource type="Texture2D" uid="uid://b5nmvas8ktv34" path="res://artwork/fish/end_to_tail.png" id="12_end_to_tail"]
 
 [node name="Fish" type="Node2D" unique_id=1899075685]
 script = ExtResource("1_fish")
 
-[node name="Pieces" type="Node2D" parent="." unique_id=1141507204]
+[node name="Artwork" type="Node2D" parent="."]
 
-[node name="Head" type="Polygon2D" parent="Pieces" unique_id=1017787644]
-color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(21.333333, 0, -10.666667, -14, -10.666667, 14)
+[node name="ConnectorOverlay" type="Node2D" parent="Artwork"]
+z_index = 0
+script = ExtResource("2_connector")
 
-[node name="UpperBody" type="Polygon2D" parent="Pieces" unique_id=1714370418]
-color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(7.714504, -18.124191, 8.283497, 17.87131, -7.714505, 18.124191, -8.283496, -17.87131)
+[node name="HeadToUpper" type="Node2D" parent="Artwork/ConnectorOverlay"]
 
-[node name="LowerBody" type="Polygon2D" parent="Pieces" unique_id=1819391304]
-color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(10.058577, -15.389119, 3.693937, 18.009851, -10.058578, 15.389117, -3.693935, -18.009852)
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/ConnectorOverlay/HeadToUpper"]
+position = Vector2(-0.263687134, -0.521144867)
+texture = ExtResource("9_head_to_upper")
 
-[node name="BodyEnd" type="Polygon2D" parent="Pieces" unique_id=1379019299]
-color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(-15.975284, 12.032883, 1.369556, -14.802847, 14.605728, 2.769965)
+[node name="UpperToLower" type="Node2D" parent="Artwork/ConnectorOverlay"]
 
-[node name="Tail" type="Polygon2D" parent="Pieces" unique_id=29228791]
-color = Color(0.294118, 0.721569, 0.870588, 1)
-polygon = PackedVector2Array(18.666667, 0, -9.333333, -18, -9.333333, 18)
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/ConnectorOverlay/UpperToLower"]
+position = Vector2(-0.157546997, -0.621059418)
+texture = ExtResource("10_upper_to_lower")
+
+[node name="LowerToEnd" type="Node2D" parent="Artwork/ConnectorOverlay"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/ConnectorOverlay/LowerToEnd"]
+position = Vector2(-0.774967194, -0.529071808)
+texture = ExtResource("11_lower_to_end")
+
+[node name="EndToTail" type="Node2D" parent="Artwork/ConnectorOverlay"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/ConnectorOverlay/EndToTail"]
+position = Vector2(0.641077042, -0.434539795)
+texture = ExtResource("12_end_to_tail")
+
+[node name="Pieces" type="Node2D" parent="Artwork"]
+z_index = 1
+
+[node name="Head" type="Node2D" parent="Artwork/Pieces"]
+
+[node name="ArtOrientation" type="Node2D" parent="Artwork/Pieces/Head"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/Pieces/Head/ArtOrientation"]
+position = Vector2(-8.320816040, -3.432720184)
+texture = ExtResource("4_head")
+
+[node name="UpperBody" type="Node2D" parent="Artwork/Pieces"]
+
+[node name="ArtOrientation" type="Node2D" parent="Artwork/Pieces/UpperBody"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/Pieces/UpperBody/ArtOrientation"]
+position = Vector2(-1.482284546, -3.267028809)
+texture = ExtResource("5_upper_body")
+
+[node name="LowerBody" type="Node2D" parent="Artwork/Pieces"]
+
+[node name="ArtOrientation" type="Node2D" parent="Artwork/Pieces/LowerBody"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/Pieces/LowerBody/ArtOrientation"]
+position = Vector2(-0.059625626, 1.025588989)
+texture = ExtResource("6_lower_body")
+
+[node name="BodyEnd" type="Node2D" parent="Artwork/Pieces"]
+
+[node name="ArtOrientation" type="Node2D" parent="Artwork/Pieces/BodyEnd"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/Pieces/BodyEnd/ArtOrientation"]
+position = Vector2(2.194061279, -4.028900146)
+texture = ExtResource("7_body_end")
+
+[node name="Tail" type="Node2D" parent="Artwork/Pieces"]
+
+[node name="ArtOrientation" type="Node2D" parent="Artwork/Pieces/Tail"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Artwork/Pieces/Tail/ArtOrientation"]
+position = Vector2(-2.913349152, -10.611907959)
+texture = ExtResource("8_tail")
 
 [node name="PBDDebugOverlay" type="Node2D" parent="." unique_id=2027726319]
 visible = false
 z_index = 10
-script = ExtResource("2_pbd_debug")
+script = ExtResource("3_pbd_debug")
