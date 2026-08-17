@@ -15,16 +15,20 @@ var hook: Node2D;
 var state: State = State.IDLE;
 var style = 0.0;
 
+func register_bite():
+	state = State.FIGHTING;
+	Services.find(StageEngine).start_combat();
+	hook.start_struggle();
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	rod = get_node("rod");
 	hook = get_node("hook");
 	
-func rod_logic(delta):
+func _rod_logic(delta):
 	if rod.current_cast != null and rod.current_cast.grade != Enums.Grade.NONE:
 		if Input.is_action_just_pressed("game_action"):
 			state = State.LURING;
-			Services.find(StageEngine).start_combat();
 	elif rod.is_casting():
 		if Input.is_action_pressed("game_action"):
 			rod.tick_cast(delta);
@@ -38,7 +42,7 @@ func rod_logic(delta):
 	
 	rod.display();
 			
-func hook_logic():
+func _hook_logic():
 	var input = Vector2.ZERO;
 	if Input.is_action_pressed("game_right"):
 		input.x += 1;
@@ -58,9 +62,11 @@ func _process(delta: float) -> void:
 		State.IDLE:
 			state = State.CASTING;
 		State.CASTING:
-			rod_logic(delta);
+			_rod_logic(delta);
 		State.LURING:
-			hook_logic();
+			_hook_logic();
+		State.FIGHTING:
+			_hook_logic();
 			if hook.progress >= 1.0:
 				Services.find(StageEngine).end_stage();
 			if hook.health <= 0.0:

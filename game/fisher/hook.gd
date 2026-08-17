@@ -37,6 +37,7 @@ var input_weight: Vector2;
 var weight_time: float;
 var heading: Vector2;
 
+var is_targeting: bool;
 var reticle_angle: float;
 var reticle_uptime: float;
 var reticle_downtime: float;
@@ -61,6 +62,9 @@ var hurt_cooldown: Timer;
 	
 func move(dir: Vector2):
 	buffered_input = dir;
+
+func start_struggle():
+	is_targeting = true;
 
 func retarget():
 	retarget_dir = -1 if randf() < turn_prob else 1;
@@ -170,7 +174,9 @@ func _handle_attacks():
 
 func _process(delta):
 	_movement(delta);
-	_targeting(delta);
+	if is_targeting:
+		_targeting(delta);
+
 	_handle_attacks();
 
 	queue_redraw();
@@ -195,6 +201,9 @@ func _draw():
 	draw_circle(Vector2.ZERO, radius, Color.WHITE, false);
 	draw_line(Vector2.ZERO, to_local(get_parent().position), Color.WHITE);
 	
+	if not is_targeting:
+		return;
+		
 	var R = radius + orbit_dist;
 	draw_arc(Vector2.ZERO, R, base_gizmo_angle, base_gizmo_angle+gizmo_arc, 64, Color.WHITE, 1);
 	var R_health = lerp(radius, R, 0.33);
