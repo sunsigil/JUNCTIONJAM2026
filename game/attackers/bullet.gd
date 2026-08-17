@@ -13,7 +13,6 @@ var mask: int;
 var dead;
 
 func _collide(body):
-	print("Colliding with ", body);
 	if body is CharacterBody2D:
 		if is_instance_valid(sender):
 			var attack = Attack.new(

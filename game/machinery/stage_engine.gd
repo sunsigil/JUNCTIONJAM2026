@@ -1,10 +1,12 @@
 class_name StageEngine
 extends Node
 
-var cutscene_scene = preload("res://machinery/cutscene_engine.tscn");
-var interstage_scene = preload("res://machinery/interstage_menu.tscn");
-var win_scene = preload("res://win_menu.tscn");
-var lose_scene = preload("res://lose_menu.tscn");
+const cutscene_scene = preload("res://machinery/cutscene_engine.tscn");
+const interstage_scene = preload("res://machinery/interstage_menu.tscn");
+const win_scene = preload("res://win_menu.tscn");
+const lose_scene = preload("res://lose_menu.tscn");
+
+signal combat_start;
 
 func start_stage():
 	get_tree().change_scene_to_packed(cutscene_scene);
@@ -16,6 +18,9 @@ func end_stage():
 		get_tree().change_scene_to_packed(win_scene);
 	else:
 		get_tree().change_scene_to_packed(interstage_scene);
+
+func start_combat():
+	combat_start.emit();
 
 func lose():
 	get_tree().change_scene_to_packed(lose_scene);

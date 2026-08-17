@@ -158,7 +158,7 @@ func _handle_attacks():
 		var attack = attack_queue.front();
 		health -= attack.damage;
 		attack_queue.pop_front();
-
+		
 	Services.find(EffectEngine).major_hitstop();
 
 	if health <= 0:

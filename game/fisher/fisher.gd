@@ -23,6 +23,7 @@ func rod_logic(delta):
 	if rod.current_cast != null and rod.current_cast.grade != Enums.Grade.NONE:
 		if Input.is_action_just_pressed("game_action"):
 			state = State.LURING;
+			Services.find(StageEngine).start_combat();
 	elif rod.is_casting():
 		if Input.is_action_pressed("game_action"):
 			rod.tick_cast(delta);

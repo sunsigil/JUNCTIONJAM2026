@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://y0i3l8k6eh7" path="res://attackers/shooter.gd" id="10_api6w"]
 [ext_resource type="PackedScene" uid="uid://cc3pbg0gm5h0c" path="res://attackers/bullet.tscn" id="11_ens7e"]
 [ext_resource type="Texture2D" uid="uid://3c74jw4hepco" path="res://artwork/mine.png" id="12_e6my3"]
+[ext_resource type="Script" uid="uid://c1gvmj2n8pc2d" path="res://attackers/spawner.gd" id="13_0l2ji"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmh31"]
 
@@ -88,6 +89,7 @@ position = Vector2(0, -156)
 shape = SubResource("WorldBoundaryShape2D_ens7e")
 
 [node name="enemy" type="CharacterBody2D" parent="." unique_id=781663246]
+visible = false
 position = Vector2(683, 218)
 collision_layer = 4
 script = ExtResource("9_64ls4")
@@ -107,3 +109,7 @@ texture = ExtResource("12_e6my3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy" unique_id=211303058]
 shape = SubResource("CircleShape2D_e6my3")
+
+[node name="spawner" type="Node2D" parent="." unique_id=515379067 node_paths=PackedStringArray("stage_groups")]
+script = ExtResource("13_0l2ji")
+stage_groups = [NodePath("../enemy")]
