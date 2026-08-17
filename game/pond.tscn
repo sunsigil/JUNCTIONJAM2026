@@ -49,9 +49,8 @@ modulate = Color(1, 1, 1, 0.40784314)
 position = Vector2(4850, 0)
 texture = ExtResource("7_64ls4")
 
-[node name="Fish" parent="." instance=ExtResource("6_fish")]
+[node name="Fish" parent="." unique_id=983063358 instance=ExtResource("6_fish")]
 position = Vector2(0, 180)
-auto_cycle_states = false
 
 [node name="boat" type="Sprite2D" parent="." unique_id=552665651]
 position = Vector2(-654, -296)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dix20hd1h35wl"]
 
 [ext_resource type="Script" uid="uid://cy6kg1w4y2ali" path="res://machinery/cutscene_engine.gd" id="1_bht5d"]
+[ext_resource type="Texture2D" uid="uid://c2upsq2gswsjf" path="res://artwork/cg/escape1/static/1.png" id="2_npbmh"]
 [ext_resource type="Texture2D" uid="uid://drld4cjhhyub1" path="res://icon.svg" id="2_p07ci"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="3_npbmh"]
 
@@ -13,8 +14,7 @@ offset_bottom = 1080.0
 
 [node name="background" type="Sprite2D" parent="." unique_id=1181146794]
 position = Vector2(960, 540)
-scale = Vector2(15.17, 8.5)
-texture = ExtResource("2_p07ci")
+texture = ExtResource("2_npbmh")
 
 [node name="portrait_0" type="Sprite2D" parent="." unique_id=1741855928]
 position = Vector2(446.88, 167.00006)
