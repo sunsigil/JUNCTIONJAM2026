@@ -42,7 +42,7 @@ func get_last_cast() -> Cast:
 	return casts[-1];
 
 func get_style():
-	return get_last_cast().grade;
+	return 1.0-get_last_cast().error;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -67,7 +67,7 @@ func _draw():
 	var tw = width * current_cast.target_t;
 	draw_rect(Rect2(x0, y0, tw, height), Color.SEA_GREEN);
 	
-	if current_cast.grade == Enums.Grade.NONE:
+	if not current_cast.finalized:
 		draw_string(ThemeDB.fallback_font, Vector2(x0, y0), "FILL TO THE GREEN BAR");
 	else:
 		draw_string(ThemeDB.fallback_font, Vector2(x0, y0), "SPACE TO PROCEED");

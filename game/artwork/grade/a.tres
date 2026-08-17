@@ -26,7 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://cdm2l6ttsc0xy" path="res://artwork/grade/a/24.png" id="24_6k00u"]
 [ext_resource type="Texture2D" uid="uid://dbp850fjxr2kk" path="res://artwork/grade/a/25.png" id="25_uksjt"]
 [ext_resource type="Texture2D" uid="uid://dqdovjwl2f5d" path="res://artwork/grade/a/26.png" id="26_50cju"]
-[ext_resource type="Texture2D" uid="uid://bk48a2jqtl8cm" path="res://artwork/grade/a.png" id="27_38t27"]
+[ext_resource type="Texture2D" uid="uid://ct8bphj5iuj2d" path="res://artwork/grade/a/27.png" id="27_1l3q4"]
+[ext_resource type="Texture2D" uid="uid://b1fumsu5m3rpl" path="res://artwork/grade/a/28.png" id="28_024wx"]
+[ext_resource type="Texture2D" uid="uid://cj8jvg4j3aqpc" path="res://artwork/grade/a/29.png" id="29_d2lod"]
+[ext_resource type="Texture2D" uid="uid://bo0y7ly3lcx7k" path="res://artwork/grade/a/30.png" id="30_p55tw"]
 
 [resource]
 animations = [{
@@ -110,7 +113,16 @@ animations = [{
 "texture": ExtResource("26_50cju")
 }, {
 "duration": 1.0,
-"texture": ExtResource("27_38t27")
+"texture": ExtResource("27_1l3q4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_024wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_d2lod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_p55tw")
 }],
 "loop": 0,
 "name": &"default",

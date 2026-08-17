@@ -11,7 +11,8 @@ signal combat_start;
 func start_stage():
 	get_tree().change_scene_to_packed(cutscene_scene);
 	
-func end_stage():
+func end_stage(grade: Enums.Grade):
+	Progress.grade = grade;
 	Progress.stage += 1;
 	if Progress.stage >= Progress.STAGE_COUNT:
 		Progress.stage = 0;

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_voy2k"]
 [ext_resource type="PackedScene" uid="uid://crhylms6jfg66" path="res://pond.tscn" id="2_nea88"]
+[ext_resource type="Script" uid="uid://l6dxf66yg0k1" path="res://machinery/set_grade_anim.gd" id="3_nea88"]
 [ext_resource type="SpriteFrames" uid="uid://dq53qmisj4g3i" path="res://artwork/cg/vs.tres" id="3_voy2k"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="5_jxugs"]
 [ext_resource type="SpriteFrames" uid="uid://brnm4dtbjox3e" path="res://artwork/grade/a.tres" id="5_nea88"]
@@ -18,6 +19,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="image" type="Node2D" parent="." unique_id=395195296]
+script = ExtResource("3_nea88")
 
 [node name="vs" type="AnimatedSprite2D" parent="image" unique_id=133994017]
 position = Vector2(960, 540)
@@ -28,7 +30,7 @@ frame_progress = 1.0
 [node name="grade" type="AnimatedSprite2D" parent="image" unique_id=274389241]
 position = Vector2(960, 540)
 sprite_frames = ExtResource("5_nea88")
-frame = 26
+frame = 25
 frame_progress = 1.0
 
 [node name="text" type="Label" parent="." unique_id=449357181]

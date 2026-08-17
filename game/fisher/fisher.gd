@@ -26,7 +26,7 @@ func _ready() -> void:
 	hook = get_node("hook");
 	
 func _rod_logic(delta):
-	if rod.current_cast != null and rod.current_cast.grade != Enums.Grade.NONE:
+	if rod.current_cast != null and rod.current_cast.finalized:
 		if Input.is_action_just_pressed("game_action"):
 			state = State.LURING;
 	elif rod.is_casting():
@@ -68,6 +68,10 @@ func _process(delta: float) -> void:
 		State.FIGHTING:
 			_hook_logic();
 			if hook.progress >= 1.0:
-				Services.find(StageEngine).end_stage();
+				var rod_style = rod.get_style();
+				var hook_style = hook.get_style();
+				Services.find(StageEngine).end_stage(Enums.make_grade(
+					(rod_style + hook_style) * 0.5
+				));
 			if hook.health <= 0.0:
 				Services.find(StageEngine).lose();
