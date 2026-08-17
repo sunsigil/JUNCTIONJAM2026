@@ -41,6 +41,11 @@ const REQUIRED_LURE_METHODS: Array[StringName] = [
 @export var wake_strength: float = 120.0
 
 @export_category("PBD Debug")
+@export var show_debug_color: bool = false:
+	set(value):
+		show_debug_color = value
+		if is_node_ready():
+			_apply_debug_color()
 @export var show_pbd_debug: bool = false:
 	set(value):
 		show_pbd_debug = value
@@ -449,6 +454,10 @@ func _set_state(next_state: State) -> void:
 
 
 func _apply_debug_color() -> void:
+	if not show_debug_color:
+		artwork.modulate = Color.WHITE
+		return
+
 	var debug_color := SWIM_COLOR
 	if state == State.CURIOUS:
 		debug_color = CURIOUS_COLOR
