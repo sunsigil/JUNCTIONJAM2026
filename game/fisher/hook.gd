@@ -59,6 +59,47 @@ var health = 1.0;
 var attack_queue: Array[Attack];
 var hitstop: Timer;
 var hurt_cooldown: Timer;
+var attached_fish: Node2D;
+
+
+func start_fish_on(fish: Node2D) -> bool:
+	var fisher := get_parent() as Fisher;
+	if fisher == null or fisher.state != Fisher.State.LURING:
+		return false;
+	if not is_instance_valid(fish) or is_fish_on():
+		return false;
+
+	attached_fish = fish;
+	attack_queue.clear();
+	_reset_minigame_counters();
+	fisher.register_bite();
+	return true;
+
+
+func is_fish_on() -> bool:
+	return is_instance_valid(attached_fish);
+
+
+func stop_fish_on() -> void:
+	attached_fish = null;
+	attack_queue.clear();
+	_reset_minigame_counters();
+
+
+func fail_fish_on() -> void:
+	stop_fish_on();
+	Services.find(StageEngine).lose();
+
+
+func _reset_minigame_counters() -> void:
+	is_targeting = false;
+	progress = 0.0;
+	reticle_angle = 0.5;
+	reticle_uptime = 0.0;
+	reticle_downtime = 0.0;
+	on_time = 0.0;
+	off_time = 0.0;
+	hit_count = 0;
 	
 func move(dir: Vector2):
 	buffered_input = dir;
@@ -81,6 +122,8 @@ func retarget():
 	retarget_timer.start();
 
 func queue_attack(attack: Attack):
+	if not is_fish_on():
+		return;
 	attack_queue.append(attack);	
 
 func get_style():
@@ -174,10 +217,9 @@ func _handle_attacks():
 
 func _process(delta):
 	_movement(delta);
-	if is_targeting:
+	if is_targeting and is_fish_on():
 		_targeting(delta);
-
-	_handle_attacks();
+		_handle_attacks();
 
 	queue_redraw();
 
@@ -200,6 +242,8 @@ func _draw():
 		
 	draw_circle(Vector2.ZERO, radius, Color.WHITE, false);
 	draw_line(Vector2.ZERO, to_local(get_parent().position), Color.WHITE);
+	if not is_fish_on():
+		return;
 	
 	if not is_targeting:
 		return;

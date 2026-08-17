@@ -13,7 +13,8 @@ script = ExtResource("1_xc628")
 [node name="rod" type="Node2D" parent="." unique_id=12496540]
 script = ExtResource("2_xljp0")
 
-[node name="hook" type="CharacterBody2D" parent="." unique_id=1576781238]
+[node name="hook" type="CharacterBody2D" parent="." unique_id=1576781238 groups=["lure"]]
+z_index = 2
 collision_layer = 2
 script = ExtResource("3_xyebp")
 
