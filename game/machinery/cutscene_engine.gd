@@ -44,9 +44,6 @@ func play(_cutscene: Array[CutsceneCommand]):
 	clear();
 	cutscene = _cutscene.duplicate();
 	command_idx = 0;
-
-func is_playing():
-	return len(cutscene) > 0;
 	
 func execute_command(cmd: CutsceneCommand):
 	match cmd.op:
@@ -96,11 +93,6 @@ func _ready():
 	play(Cutscenes.cutscenes[Progress.stage]);
 	
 func _process(delta: float) -> void:
-	if not is_playing():
-		hide();
-		return;
-	show();
-	
 	refresh();
 		
 	var cmd = cutscene[command_idx];

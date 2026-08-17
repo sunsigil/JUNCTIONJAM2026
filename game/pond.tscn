@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://buu87jnvx74qm" path="res://fisher/camera.gd" id="1_micnc"]
 [ext_resource type="PackedScene" uid="uid://dbhxdgxjcoie5" path="res://fisher/fisher.tscn" id="2_4dpsv"]
 [ext_resource type="Texture2D" uid="uid://5uanspnqyj5q" path="res://artwork/bg.png" id="3_api6w"]
+[ext_resource type="Script" uid="uid://d0vi7je3s6rx2" path="res://machinery/audio_engine.gd" id="3_koo8m"]
 [ext_resource type="Texture2D" uid="uid://deagd46g6nsul" path="res://artwork/boat.png" id="4_tmh31"]
 [ext_resource type="Texture2D" uid="uid://cy7bb01o0w40n" path="res://artwork/fisher.png" id="5_64ls4"]
 [ext_resource type="PackedScene" uid="uid://bgroccw2ok1rn" path="res://fish/fish.tscn" id="6_fish"]
@@ -41,6 +42,12 @@ camera = NodePath("../Camera2D")
 [node name="hitstop" type="Timer" parent="effect_engine" unique_id=48519495]
 ignore_time_scale = true
 
+[node name="audio_engine" type="Node" parent="." unique_id=714188177]
+script = ExtResource("3_koo8m")
+
+[node name="player" type="AudioStreamPlayer2D" parent="audio_engine" unique_id=144610712]
+volume_db = 1.0
+
 [node name="bg" type="Sprite2D" parent="." unique_id=1584992927]
 texture = ExtResource("3_api6w")
 
@@ -48,6 +55,9 @@ texture = ExtResource("3_api6w")
 modulate = Color(1, 1, 1, 0.40784314)
 position = Vector2(4850, 0)
 texture = ExtResource("7_64ls4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
+script = ExtResource("1_micnc")
 
 [node name="Fish" parent="." unique_id=983063358 instance=ExtResource("6_fish")]
 position = Vector2(0, 180)
@@ -59,9 +69,6 @@ texture = ExtResource("4_tmh31")
 [node name="fisher" type="Sprite2D" parent="boat" unique_id=1245300547]
 position = Vector2(133, -77)
 texture = ExtResource("5_64ls4")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1737520154]
-script = ExtResource("1_micnc")
 
 [node name="fisher" parent="." unique_id=508495536 instance=ExtResource("2_4dpsv")]
 position = Vector2(-414, -469)
@@ -92,28 +99,29 @@ shape = SubResource("WorldBoundaryShape2D_api6w")
 position = Vector2(0, -156)
 shape = SubResource("WorldBoundaryShape2D_ens7e")
 
-[node name="enemy" type="CharacterBody2D" parent="." unique_id=781663246]
-visible = false
+[node name="stage 1" type="Node2D" parent="." unique_id=1267420795]
+
+[node name="enemy" type="CharacterBody2D" parent="stage 1" unique_id=781663246]
 position = Vector2(683, 218)
 collision_layer = 4
 script = ExtResource("9_64ls4")
 
-[node name="shooter" type="Node2D" parent="enemy" unique_id=1537034829]
+[node name="shooter" type="Node2D" parent="stage 1/enemy" unique_id=1537034829]
 script = ExtResource("10_api6w")
 mask = 3
 bullet = ExtResource("11_ens7e")
 
-[node name="cooldown" type="Timer" parent="enemy/shooter" unique_id=987458621]
+[node name="cooldown" type="Timer" parent="stage 1/enemy/shooter" unique_id=987458621]
 
-[node name="Sprite2D" type="Sprite2D" parent="enemy" unique_id=694904018]
+[node name="Sprite2D" type="Sprite2D" parent="stage 1/enemy" unique_id=694904018]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_e6my3")
 
-[node name="attack_cooldown" type="Timer" parent="enemy" unique_id=1209316087]
+[node name="attack_cooldown" type="Timer" parent="stage 1/enemy" unique_id=1209316087]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy" unique_id=211303058]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stage 1/enemy" unique_id=211303058]
 shape = SubResource("CircleShape2D_e6my3")
 
 [node name="spawner" type="Node2D" parent="." unique_id=515379067 node_paths=PackedStringArray("stage_groups")]
 script = ExtResource("13_0l2ji")
-stage_groups = [NodePath("../enemy")]
+stage_groups = [NodePath("../stage 1")]
