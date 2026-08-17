@@ -25,9 +25,9 @@ const max_retarget_wait: float = 3.5;
 const min_retarget_speed: float = 1.0;
 const max_retarget_speed: float = 3.0;
 
-const reticle_tolerance: float = 0.1;
+const reticle_tolerance: float = 0.15;
 const progress_grow: float = 1.0/6.0;
-const progress_decay: float = 1.0/16.0;
+const progress_decay: float = 1.0/14.0;
 
 var buffered_input: Vector2;
 var input: Vector2;
@@ -227,9 +227,10 @@ func _process(delta):
 
 const base_gizmo_angle = PI/2.0;
 const gizmo_arc = PI;
-const health_colour = Color.RED;
-const progress_colour = Color.GREEN;
-const cursor_colour = Color.ALICE_BLUE;
+const base_colour = Color.BLANCHED_ALMOND;
+const health_colour = Color.ORANGE_RED;
+const progress_colour = Color.GREEN_YELLOW;
+const cursor_colour = progress_colour;
 
 func _make_gizmo_polar(t, r):
 	t = base_gizmo_angle + gizmo_arc * t;
@@ -242,8 +243,8 @@ func _draw():
 		return;
 	_display = false;
 		
-	draw_circle(Vector2.ZERO, radius, Color.WHITE, false);
-	draw_line(Vector2.ZERO, to_local(get_parent().position), Color.WHITE);
+	draw_circle(Vector2.ZERO, radius, base_colour, false, 4);
+	draw_line(Vector2.ZERO, to_local(get_parent().position), Color.WHITE, 2.0);
 	if not is_fish_on():
 		return;
 	
@@ -251,14 +252,14 @@ func _draw():
 		return;
 		
 	var R = radius + orbit_dist;
-	draw_arc(Vector2.ZERO, R, base_gizmo_angle, base_gizmo_angle+gizmo_arc, 64, Color.WHITE, 1);
+	draw_arc(Vector2.ZERO, R, base_gizmo_angle, base_gizmo_angle+gizmo_arc, 64, base_colour, 4);
 	var R_health = lerp(radius, R, 0.33);
-	draw_arc(Vector2.ZERO, R_health, base_gizmo_angle, base_gizmo_angle+gizmo_arc*health, 64, Color.RED, 2);
+	draw_arc(Vector2.ZERO, R_health, base_gizmo_angle, base_gizmo_angle+gizmo_arc*health, 64, health_colour, 6);
 	var R_progress = lerp(radius, R, 0.66);
-	draw_arc(Vector2.ZERO, R_progress, base_gizmo_angle, base_gizmo_angle+gizmo_arc*progress, 64, progress_colour, 2);
+	draw_arc(Vector2.ZERO, R_progress, base_gizmo_angle, base_gizmo_angle+gizmo_arc*progress, 64, progress_colour, 6);
 
 	var target_point = _make_gizmo_polar(target_angle, R);
-	draw_circle(target_point, 8, progress_colour);
+	draw_circle(target_point, 12, progress_colour, true);
 
 	var reticle_t = base_gizmo_angle + gizmo_arc * reticle_angle;
-	draw_arc(Vector2.ZERO, R, reticle_t-reticle_tolerance, reticle_t+reticle_tolerance, 64, cursor_colour, 8);
+	draw_arc(Vector2.ZERO, R, reticle_t-reticle_tolerance, reticle_t+reticle_tolerance, 64, cursor_colour, 10);

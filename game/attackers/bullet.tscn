@@ -9,7 +9,7 @@ radius = 23.021729
 [node name="bullet" type="Node2D" unique_id=992522056]
 script = ExtResource("1_elbpw")
 damage = 0.1
-speed = 200.0
+speed = 300.0
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=344595710]
 texture = ExtResource("2_elbpw")
