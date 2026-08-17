@@ -13,6 +13,11 @@
 [ext_resource type="Script" uid="uid://br8wok3bfaw70" path="res://machinery/stage_engine.gd" id="8_tmh31"]
 [ext_resource type="PackedScene" uid="uid://cyolpikm873f6" path="res://attackers/enemy.tscn" id="12_0l2ji"]
 [ext_resource type="Script" uid="uid://c1gvmj2n8pc2d" path="res://attackers/spawner.gd" id="13_0l2ji"]
+[ext_resource type="Script" uid="uid://bq4jv4r3h08nn" path="res://attackers/stage_group.gd" id="14_stage"]
+[ext_resource type="Script" uid="uid://2eyuc2pebvwk" path="res://attackers/hazard_spawner.gd" id="15_spawner"]
+[ext_resource type="PackedScene" path="res://props/colliding/mines/bomb.tscn" id="16_bomb"]
+[ext_resource type="PackedScene" path="res://props/colliding/sock.tscn" id="17_sock"]
+[ext_resource type="PackedScene" path="res://props/colliding/beer.tscn" id="18_beer"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmh31"]
 
@@ -92,10 +97,32 @@ position = Vector2(0, -156)
 shape = SubResource("WorldBoundaryShape2D_ens7e")
 
 [node name="stage 1" type="Node2D" parent="." unique_id=1267420795]
+visible = false
+script = ExtResource("14_stage")
 
-[node name="enemy" parent="stage 1" unique_id=527806051 instance=ExtResource("12_0l2ji")]
+[node name="stage 2" type="Node2D" parent="."]
+visible = false
+script = ExtResource("14_stage")
+
+[node name="enemy" type="Node2D" parent="stage 2"]
+script = ExtResource("15_spawner")
+
+[node name="bomb" parent="stage 2/enemy" instance=ExtResource("16_bomb")]
+position = Vector2(380, 300)
+
+[node name="sock" parent="stage 2/enemy" instance=ExtResource("17_sock")]
+position = Vector2(-520, 210)
+
+[node name="beer" parent="stage 2/enemy" instance=ExtResource("18_beer")]
+position = Vector2(650, 430)
+
+[node name="stage 3" type="Node2D" parent="."]
+visible = false
+script = ExtResource("14_stage")
+
+[node name="enemy" parent="stage 3" unique_id=527806051 instance=ExtResource("12_0l2ji")]
 position = Vector2(683, 218)
 
 [node name="spawner" type="Node2D" parent="." unique_id=515379067 node_paths=PackedStringArray("stage_groups")]
 script = ExtResource("13_0l2ji")
-stage_groups = [NodePath("../stage 1")]
+stage_groups = [NodePath("../stage 1"), NodePath("../stage 2"), NodePath("../stage 3")]
