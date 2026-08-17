@@ -127,10 +127,10 @@ func queue_attack(attack: Attack):
 	attack_queue.append(attack);	
 
 func get_style():
-	var coverage = on_time / off_time;
 	var total_time = on_time + off_time;
-	var avoidance = total_time / (hit_count * 3.0);
-	return (coverage + avoidance) / 2.0;
+	var coverage = on_time / total_time;
+	var avoidance = (1.0 if hit_count < 2 else (0.5 if hit_count < 3 else (0.25 if hit_count < 5 else 0.0)));
+	return (coverage + avoidance) * 0.5;
 
 func _ready() -> void:
 	retarget_timer = get_node("retarget");

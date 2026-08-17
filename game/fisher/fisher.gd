@@ -67,11 +67,28 @@ func _process(delta: float) -> void:
 			_hook_logic();
 		State.FIGHTING:
 			_hook_logic();
+
 			if hook.progress >= 1.0:
-				var rod_style = rod.get_style();
-				var hook_style = hook.get_style();
-				Services.find(StageEngine).end_stage(Enums.make_grade(
-					(rod_style + hook_style) * 0.5
-				));
+				var factors = [
+					 rod.get_style(),
+					 hook.get_style()
+				];
+				var weights = [
+					0.25,
+					1.0
+				];
+
+				var total_style = 0;
+				var total_weight = 0;
+				for i in factors.size():
+					var factor = factors[i];
+					var weight = weights[i];
+					total_style += factor * weight;
+					total_weight += weight;
+
+				var style = total_style/total_weight;
+				var grade = Enums.make_grade(style);
+				Services.find(StageEngine).end_stage(grade);
+
 			if hook.health <= 0.0:
 				Services.find(StageEngine).lose();

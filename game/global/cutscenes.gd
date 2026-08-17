@@ -17,7 +17,9 @@ static var escape_1: Array[CutsceneEngine.CutsceneCommand] = [
 ];
 
 static var cutscenes = [
-	escape_1
+	escape_1,
+	escape_1,
+	escape_1,
 ];
 
 static var grade_anims: Array[SpriteFrames] = [
