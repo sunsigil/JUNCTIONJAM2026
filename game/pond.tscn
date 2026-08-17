@@ -100,28 +100,36 @@ shape = SubResource("WorldBoundaryShape2D_ens7e")
 visible = false
 script = ExtResource("14_stage")
 
-[node name="stage 2" type="Node2D" parent="."]
-visible = false
+[node name="stage 2" type="Node2D" parent="." unique_id=1093349359]
 script = ExtResource("14_stage")
 
-[node name="enemy" type="Node2D" parent="stage 2"]
+[node name="hazards" type="Node2D" parent="stage 2" unique_id=381452156]
 script = ExtResource("15_spawner")
 
-[node name="bomb" parent="stage 2/enemy" instance=ExtResource("16_bomb")]
+[node name="bomb" parent="stage 2/hazards" unique_id=332379470 instance=ExtResource("16_bomb")]
 position = Vector2(380, 300)
 
-[node name="sock" parent="stage 2/enemy" instance=ExtResource("17_sock")]
+[node name="sock" parent="stage 2/hazards" unique_id=1412155358 instance=ExtResource("17_sock")]
 position = Vector2(-520, 210)
 
-[node name="beer" parent="stage 2/enemy" instance=ExtResource("18_beer")]
+[node name="beer" parent="stage 2/hazards" unique_id=1435061708 instance=ExtResource("18_beer")]
 position = Vector2(650, 430)
 
-[node name="stage 3" type="Node2D" parent="."]
+[node name="enemy" parent="stage 2" unique_id=527806051 instance=ExtResource("12_0l2ji")]
+position = Vector2(631, -59)
+
+[node name="stage 3" type="Node2D" parent="." unique_id=1316613006]
 visible = false
 script = ExtResource("14_stage")
 
-[node name="enemy" parent="stage 3" unique_id=527806051 instance=ExtResource("12_0l2ji")]
-position = Vector2(683, 218)
+[node name="enemy3" parent="stage 3" unique_id=792957445 instance=ExtResource("12_0l2ji")]
+position = Vector2(-8, -108)
+
+[node name="enemy2" parent="stage 3" unique_id=1186930242 instance=ExtResource("12_0l2ji")]
+position = Vector2(-538, 372)
+
+[node name="enemy" parent="stage 3" unique_id=1337486773 instance=ExtResource("12_0l2ji")]
+position = Vector2(468, 350)
 
 [node name="spawner" type="Node2D" parent="." unique_id=515379067 node_paths=PackedStringArray("stage_groups")]
 script = ExtResource("13_0l2ji")

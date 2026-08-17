@@ -1,31 +1,30 @@
 [gd_scene format=3 uid="uid://bi3ygrc7kca4r"]
 
 [ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_705q1"]
-[ext_resource type="Texture2D" uid="uid://dywiiqq4o7v5y" path="res://test/win_menu.png" id="2_705q1"]
 [ext_resource type="PackedScene" uid="uid://degofuclnrjmv" path="res://main_menu.tscn" id="2_jcnpx"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="3_lws6u"]
+[ext_resource type="SpriteFrames" uid="uid://chlwsvts508fa" path="res://artwork/cg/win/win.tres" id="5_lws6u"]
 
-[node name="Menu" type="Node2D" unique_id=1720330520]
+[node name="Menu" type="Node2D" unique_id=1720330520 node_paths=PackedStringArray("await_animations")]
 script = ExtResource("1_705q1")
 scene = ExtResource("2_jcnpx")
 prompt = "[GO FISH]"
 post_prompt = " NOTHING I LOVE MORE..."
+await_animations = [NodePath("anim")]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=466279141]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="image" type="Sprite2D" parent="." unique_id=1771881550]
-texture_filter = 1
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=53661373]
 position = Vector2(960, 540)
-scale = Vector2(10, 10)
-texture = ExtResource("2_705q1")
+sprite_frames = ExtResource("5_lws6u")
 
 [node name="text" type="Label" parent="." unique_id=449357181]
 offset_left = 762.0
-offset_top = 952.0
+offset_top = 947.0
 offset_right = 1168.0
-offset_bottom = 1011.0
+offset_bottom = 1006.0
 pivot_offset = Vector2(200, 30)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1

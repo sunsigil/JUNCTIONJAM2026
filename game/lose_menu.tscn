@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_56whq"]
 [ext_resource type="PackedScene" uid="uid://degofuclnrjmv" path="res://main_menu.tscn" id="2_6d0jo"]
-[ext_resource type="Texture2D" uid="uid://bkljqnramtppn" path="res://test/lose_menu.png" id="2_56whq"]
+[ext_resource type="Texture2D" uid="uid://cnqvc8l5qk5jc" path="res://artwork/cg/loss.png" id="3_6d0jo"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="3_x67gk"]
 
 [node name="Menu" type="Node2D" unique_id=1720330520]
@@ -19,19 +19,18 @@ color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 [node name="image" type="Sprite2D" parent="." unique_id=1771881550]
 texture_filter = 1
 position = Vector2(960, 540)
-scale = Vector2(10, 10)
-texture = ExtResource("2_56whq")
+texture = ExtResource("3_6d0jo")
 
 [node name="text" type="Label" parent="." unique_id=449357181]
 offset_left = 760.0
-offset_top = 932.0
+offset_top = 786.0
 offset_right = 1166.0
-offset_bottom = 991.0
+offset_bottom = 874.0
 pivot_offset = Vector2(200, 30)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_x67gk")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 72
 text = "[GO FISH]"
 horizontal_alignment = 1
 vertical_alignment = 1
