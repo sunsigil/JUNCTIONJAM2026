@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://5uanspnqyj5q" path="res://artwork/bg.png" id="3_api6w"]
 [ext_resource type="Texture2D" uid="uid://deagd46g6nsul" path="res://artwork/boat.png" id="4_tmh31"]
 [ext_resource type="Texture2D" uid="uid://cy7bb01o0w40n" path="res://artwork/fisher.png" id="5_64ls4"]
+[ext_resource type="PackedScene" uid="uid://bgroccw2ok1rn" path="res://fish/fish.tscn" id="6_fish"]
 [ext_resource type="Texture2D" uid="uid://bubqfyqwtkryn" path="res://artwork/water.png" id="7_64ls4"]
 [ext_resource type="Script" uid="uid://b3erf8ox0i3f2" path="res://fisher/effect_engine.gd" id="7_tmh31"]
 [ext_resource type="Script" uid="uid://br8wok3bfaw70" path="res://machinery/stage_engine.gd" id="8_tmh31"]
@@ -47,6 +48,10 @@ texture = ExtResource("3_api6w")
 modulate = Color(1, 1, 1, 0.40784314)
 position = Vector2(4850, 0)
 texture = ExtResource("7_64ls4")
+
+[node name="Fish" parent="." instance=ExtResource("6_fish")]
+position = Vector2(0, 180)
+auto_cycle_states = false
 
 [node name="boat" type="Sprite2D" parent="." unique_id=552665651]
 position = Vector2(-654, -296)
