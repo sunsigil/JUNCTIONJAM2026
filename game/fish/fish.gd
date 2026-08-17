@@ -238,7 +238,7 @@ func _start_lure_nibble() -> void:
 		_return_to_swim()
 
 
-func _update_nibble_movement(delta: float) -> void:
+func _update_nibble_movement(_delta: float) -> void:
 	if not is_instance_valid(target_lure):
 		_return_to_swim()
 		return
@@ -257,19 +257,23 @@ func _update_nibble_movement(delta: float) -> void:
 		lure.call("fail_fish_on")
 		return
 
-	var to_lure := lure.global_position - global_position
-	if not to_lure.is_zero_approx():
-		var turn_weight := clampf(turn_speed * delta, 0.0, 1.0)
-		var target_heading := to_lure.angle() + PI
-		rotation = lerp_angle(rotation, target_heading, turn_weight)
+	var hook_body := lure as CharacterBody2D
+	if hook_body != null:
+		_anchor_to_hook(hook_body)
 
-	var pulse := _get_nibble_pulse()
-	var desired_head_position := lure.global_position + Vector2(
-		pulse * nibble_distance,
-		pulse * 2.0
-	)
+func sync_to_hook(hook_body: CharacterBody2D, delta: float) -> void:
+	if state != State.NIBBLE or target_lure != hook_body:
+		return
+	if not hook_body.velocity.is_zero_approx():
+		var target_heading := hook_body.velocity.angle() + PI
+		var turn_weight := 1.0 - exp(-turn_speed * delta)
+		rotation = lerp_angle(rotation, target_heading, turn_weight)
+	_anchor_to_hook(hook_body)
+
+
+func _anchor_to_hook(hook_body: CharacterBody2D) -> void:
 	var target_head_offset := to_global(_get_head_target()) - global_position
-	global_position = desired_head_position - target_head_offset
+	global_position = hook_body.global_position - target_head_offset
 
 
 func _is_lure_beyond_escape(lure: Node2D) -> bool:
