@@ -90,7 +90,7 @@ func _ready():
 	clear();
 	refresh();
 
-	play(Cutscenes.cutscenes[Progress.stage]);
+	play(Cutscenes.cutscenes[Progress.stage-1]);
 	
 func _process(delta: float) -> void:
 	refresh();

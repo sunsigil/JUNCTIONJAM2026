@@ -14,7 +14,7 @@ func start_stage():
 func end_stage(grade: Enums.Grade):
 	Progress.grade = grade;
 	Progress.stage += 1;
-	if Progress.stage > Progress.STAGE_COUNT:
+	if Progress.stage >= Progress.STAGE_COUNT:
 		Progress.stage = 0;
 		get_tree().change_scene_to_packed(win_scene);
 	else:
