@@ -155,6 +155,8 @@ func _movement(delta):
 		weight_time += delta;
 	velocity = lerp(velocity, heading*speed, delta/velocity_delay);
 	move_and_slide();
+	if is_fish_on() and attached_fish.has_method("sync_to_hook"):
+		attached_fish.call("sync_to_hook", self, delta);
 
 func _targeting(delta):
 	match target_state:
