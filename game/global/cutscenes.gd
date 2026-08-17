@@ -6,6 +6,18 @@ static var escape_1_frames: Array[Texture2D] = [
 	preload("res://artwork/cg/escape1/static/3.png"),
 ]
 
+static var escape_2_frames: Array[Texture2D] = [
+	preload("res://artwork/cg/escape2/static/1.png"),
+	preload("res://artwork/cg/escape2/static/2.png"),
+	preload("res://artwork/cg/escape2/static/3.png"),
+]
+
+static var escape_3_frames: Array[Texture2D] = [
+	preload("res://artwork/cg/escape3/1.png"),
+	preload("res://artwork/cg/escape3/2.png"),
+	preload("res://artwork/cg/escape3//3.png"),
+]
+
 static var escape_1: Array[CutsceneEngine.CutsceneCommand] = [
 	CutsceneEngine.SET_BACKGROUND_COLOUR(Color.WHITE),
 	CutsceneEngine.SET_BACKGROUND(escape_1_frames[0]),
@@ -16,10 +28,30 @@ static var escape_1: Array[CutsceneEngine.CutsceneCommand] = [
 	CutsceneEngine.SET_TEXT(""),
 ];
 
+static var escape_2: Array[CutsceneEngine.CutsceneCommand] = [
+	CutsceneEngine.SET_BACKGROUND_COLOUR(Color.WHITE),
+	CutsceneEngine.SET_BACKGROUND(escape_2_frames[0]),
+	CutsceneEngine.SET_TEXT(""),
+	CutsceneEngine.SET_BACKGROUND(escape_2_frames[1]),
+	CutsceneEngine.SET_TEXT(""),
+	CutsceneEngine.SET_BACKGROUND(escape_2_frames[2]),
+	CutsceneEngine.SET_TEXT(""),
+];
+
+static var escape_3: Array[CutsceneEngine.CutsceneCommand] = [
+	CutsceneEngine.SET_BACKGROUND_COLOUR(Color.WHITE),
+	CutsceneEngine.SET_BACKGROUND(escape_3_frames[0]),
+	CutsceneEngine.SET_TEXT(""),
+	CutsceneEngine.SET_BACKGROUND(escape_3_frames[1]),
+	CutsceneEngine.SET_TEXT(""),
+	CutsceneEngine.SET_BACKGROUND(escape_3_frames[2]),
+	CutsceneEngine.SET_TEXT(""),
+];
+
 static var cutscenes = [
 	escape_1,
-	escape_1,
-	escape_1,
+	escape_2,
+	escape_3,
 ];
 
 static var grade_anims: Array[SpriteFrames] = [

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://degofuclnrjmv"]
 
 [ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_ouk20"]
-[ext_resource type="PackedScene" uid="uid://dix20hd1h35wl" path="res://machinery/cutscene_engine.tscn" id="2_jix8l"]
+[ext_resource type="PackedScene" uid="uid://crhylms6jfg66" path="res://pond.tscn" id="2_jix8l"]
 [ext_resource type="Texture2D" uid="uid://cmmxavkvkqpa7" path="res://artwork/cg/title.png" id="3_jix8l"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="3_mae5d"]
 
