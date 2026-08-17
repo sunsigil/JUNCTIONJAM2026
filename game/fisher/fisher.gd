@@ -6,6 +6,7 @@ enum State
 	IDLE,
 	CASTING,
 	LURING,
+	FIGHTING
 };
 
 var rod: Node2D;

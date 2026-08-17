@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dybtnd6n3v08t" path="res://machinery/transition_menu.gd" id="1_voy2k"]
 [ext_resource type="PackedScene" uid="uid://crhylms6jfg66" path="res://pond.tscn" id="2_nea88"]
-[ext_resource type="Texture2D" uid="uid://crqawt0ujg3y8" path="res://artwork/cg/fisher.png" id="3_f5d7j"]
-[ext_resource type="Texture2D" uid="uid://coyt0tk671sdc" path="res://artwork/cg/fish.png" id="4_1ivuc"]
+[ext_resource type="SpriteFrames" uid="uid://dq53qmisj4g3i" path="res://artwork/cg/vs.tres" id="3_voy2k"]
 [ext_resource type="FontFile" uid="uid://d2motbgu1msdp" path="res://fonts/CormorantGaramond-VariableFont_wght.ttf" id="5_jxugs"]
+[ext_resource type="SpriteFrames" uid="uid://brnm4dtbjox3e" path="res://artwork/grade/a.tres" id="5_nea88"]
 
-[node name="Menu" type="Node2D" unique_id=1720330520]
+[node name="Menu" type="Node2D" unique_id=1720330520 node_paths=PackedStringArray("await_animations")]
 script = ExtResource("1_voy2k")
 scene = ExtResource("2_nea88")
 prompt = "[CONTINUE]"
 post_prompt = "ONCE MORE..."
+await_animations = [NodePath("image/vs"), NodePath("image/grade")]
 
 [node name="bg" type="ColorRect" parent="." unique_id=466279141]
 offset_right = 1920.0
@@ -18,15 +19,17 @@ offset_bottom = 1080.0
 
 [node name="image" type="Node2D" parent="." unique_id=395195296]
 
-[node name="fisher" type="Sprite2D" parent="image" unique_id=1771881550]
-texture_filter = 1
+[node name="vs" type="AnimatedSprite2D" parent="image" unique_id=133994017]
 position = Vector2(960, 540)
-texture = ExtResource("3_f5d7j")
+sprite_frames = ExtResource("3_voy2k")
+frame = 10
+frame_progress = 1.0
 
-[node name="fish" type="Sprite2D" parent="image" unique_id=1856571106]
-texture_filter = 1
+[node name="grade" type="AnimatedSprite2D" parent="image" unique_id=274389241]
 position = Vector2(960, 540)
-texture = ExtResource("4_1ivuc")
+sprite_frames = ExtResource("5_nea88")
+frame = 26
+frame_progress = 1.0
 
 [node name="text" type="Label" parent="." unique_id=449357181]
 offset_left = 1580.0

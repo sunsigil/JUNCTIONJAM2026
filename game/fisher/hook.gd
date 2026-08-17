@@ -26,8 +26,8 @@ const min_retarget_speed: float = 1.0;
 const max_retarget_speed: float = 3.0;
 
 const reticle_tolerance: float = 0.1;
-const progress_grow: float = 1.0/10.0;
-const progress_decay: float = 1.0/12.0;
+const progress_grow: float = 1.0/6.0;
+const progress_decay: float = 1.0/16.0;
 
 var buffered_input: Vector2;
 var input: Vector2;
