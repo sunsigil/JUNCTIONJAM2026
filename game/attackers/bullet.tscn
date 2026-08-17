@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cc3pbg0gm5h0c"]
 
 [ext_resource type="Script" uid="uid://dw13kn8we45qe" path="res://attackers/bullet.gd" id="1_elbpw"]
-[ext_resource type="Texture2D" uid="uid://3c74jw4hepco" path="res://artwork/mine.png" id="2_ctxk0"]
+[ext_resource type="Texture2D" uid="uid://blei8h3a31gtg" path="res://artwork/bullet.png" id="2_elbpw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ens7e"]
 radius = 23.021729
@@ -12,8 +12,7 @@ damage = 0.1
 speed = 200.0
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=344595710]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_ctxk0")
+texture = ExtResource("2_elbpw")
 
 [node name="hitbox" type="Area2D" parent="." unique_id=93515690]
 collision_layer = 8

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cyolpikm873f6"]
+
+[ext_resource type="Script" uid="uid://u8roiga7sqhe" path="res://attackers/enemy.gd" id="1_kxhqw"]
+[ext_resource type="Script" uid="uid://y0i3l8k6eh7" path="res://attackers/shooter.gd" id="2_b382g"]
+[ext_resource type="PackedScene" uid="uid://cc3pbg0gm5h0c" path="res://attackers/bullet.tscn" id="3_jy7aj"]
+[ext_resource type="Texture2D" uid="uid://dqh6nq12vyt4x" path="res://artwork/pufferfish.png" id="4_28w1q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6my3"]
+radius = 67.11929
+
+[node name="enemy" type="CharacterBody2D" unique_id=527806051]
+collision_layer = 4
+script = ExtResource("1_kxhqw")
+
+[node name="shooter" type="Node2D" parent="." unique_id=225425514]
+script = ExtResource("2_b382g")
+mask = 3
+bullet = ExtResource("3_jy7aj")
+
+[node name="cooldown" type="Timer" parent="shooter" unique_id=766026742]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636485019]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_28w1q")
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1603639587]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2004157580]
+shape = SubResource("CircleShape2D_e6my3")

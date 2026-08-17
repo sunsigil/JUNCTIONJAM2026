@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cbkhbpyij7aq4"]
+
+[ext_resource type="Script" uid="uid://d0vi7je3s6rx2" path="res://machinery/audio_engine.gd" id="1_w018p"]
+
+[node name="audio_engine" type="Node" unique_id=2056652689]
+script = ExtResource("1_w018p")
+
+[node name="player" type="AudioStreamPlayer2D" parent="." unique_id=1837287101]

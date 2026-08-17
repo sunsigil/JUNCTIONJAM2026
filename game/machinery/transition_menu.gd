@@ -6,6 +6,9 @@ extends Node
 
 @export var await_animations: Array[AnimatedSprite2D];
 
+@export var audio_player: AudioStreamPlayer2D;
+@export var audio_stream: AudioStreamWAV;
+
 var trigger = false;
 var t: float = 0;
 
@@ -36,7 +39,10 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("game_action"):
 		trigger = true;
-		
+		if audio_player != null:
+			audio_player.stream = audio_stream;
+			audio_player.play();
+
 	if trigger:
 		image_node.modulate.a = 1.0-t*1.5;
 		text_node.text = post_prompt;

@@ -1,6 +1,6 @@
 extends Node
 
-const song: AudioStreamWAV = preload("res://audio/fish_waiting.wav");
+@export var song: AudioStreamWAV = preload("res://audio/fish_waiting.wav");
 
 var player: AudioStreamPlayer2D;
 

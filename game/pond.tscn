@@ -4,16 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dbhxdgxjcoie5" path="res://fisher/fisher.tscn" id="2_4dpsv"]
 [ext_resource type="Texture2D" uid="uid://5uanspnqyj5q" path="res://artwork/bg.png" id="3_api6w"]
 [ext_resource type="Script" uid="uid://d0vi7je3s6rx2" path="res://machinery/audio_engine.gd" id="3_koo8m"]
+[ext_resource type="AudioStream" uid="uid://btdhh7he4pyjy" path="res://audio/fish_reeling.wav" id="4_s325f"]
 [ext_resource type="Texture2D" uid="uid://deagd46g6nsul" path="res://artwork/boat.png" id="4_tmh31"]
 [ext_resource type="Texture2D" uid="uid://cy7bb01o0w40n" path="res://artwork/fisher.png" id="5_64ls4"]
 [ext_resource type="PackedScene" uid="uid://bgroccw2ok1rn" path="res://fish/fish.tscn" id="6_fish"]
 [ext_resource type="Texture2D" uid="uid://bubqfyqwtkryn" path="res://artwork/water.png" id="7_64ls4"]
 [ext_resource type="Script" uid="uid://b3erf8ox0i3f2" path="res://fisher/effect_engine.gd" id="7_tmh31"]
 [ext_resource type="Script" uid="uid://br8wok3bfaw70" path="res://machinery/stage_engine.gd" id="8_tmh31"]
-[ext_resource type="Script" uid="uid://u8roiga7sqhe" path="res://attackers/enemy.gd" id="9_64ls4"]
-[ext_resource type="Script" uid="uid://y0i3l8k6eh7" path="res://attackers/shooter.gd" id="10_api6w"]
-[ext_resource type="PackedScene" uid="uid://cc3pbg0gm5h0c" path="res://attackers/bullet.tscn" id="11_ens7e"]
-[ext_resource type="Texture2D" uid="uid://3c74jw4hepco" path="res://artwork/mine.png" id="12_e6my3"]
+[ext_resource type="PackedScene" uid="uid://cyolpikm873f6" path="res://attackers/enemy.tscn" id="12_0l2ji"]
 [ext_resource type="Script" uid="uid://c1gvmj2n8pc2d" path="res://attackers/spawner.gd" id="13_0l2ji"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmh31"]
@@ -26,9 +24,6 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ens7e"]
 normal = Vector2(0, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e6my3"]
-radius = 67.11929
 
 [node name="Pond" type="Node2D" unique_id=1705611451]
 
@@ -44,6 +39,7 @@ ignore_time_scale = true
 
 [node name="audio_engine" type="Node" parent="." unique_id=714188177]
 script = ExtResource("3_koo8m")
+song = ExtResource("4_s325f")
 
 [node name="player" type="AudioStreamPlayer2D" parent="audio_engine" unique_id=144610712]
 volume_db = 1.0
@@ -101,26 +97,8 @@ shape = SubResource("WorldBoundaryShape2D_ens7e")
 
 [node name="stage 1" type="Node2D" parent="." unique_id=1267420795]
 
-[node name="enemy" type="CharacterBody2D" parent="stage 1" unique_id=781663246]
+[node name="enemy" parent="stage 1" unique_id=527806051 instance=ExtResource("12_0l2ji")]
 position = Vector2(683, 218)
-collision_layer = 4
-script = ExtResource("9_64ls4")
-
-[node name="shooter" type="Node2D" parent="stage 1/enemy" unique_id=1537034829]
-script = ExtResource("10_api6w")
-mask = 3
-bullet = ExtResource("11_ens7e")
-
-[node name="cooldown" type="Timer" parent="stage 1/enemy/shooter" unique_id=987458621]
-
-[node name="Sprite2D" type="Sprite2D" parent="stage 1/enemy" unique_id=694904018]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_e6my3")
-
-[node name="attack_cooldown" type="Timer" parent="stage 1/enemy" unique_id=1209316087]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stage 1/enemy" unique_id=211303058]
-shape = SubResource("CircleShape2D_e6my3")
 
 [node name="spawner" type="Node2D" parent="." unique_id=515379067 node_paths=PackedStringArray("stage_groups")]
 script = ExtResource("13_0l2ji")
